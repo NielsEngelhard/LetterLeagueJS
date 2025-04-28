@@ -1,8 +1,24 @@
+import { CircleUserRound, Settings } from "lucide-react";
+import IconButton from "@/components/shared/IconButton";
+import TextButton from "../shared/TextButton";
+import Link from "next/link";
+
 export default function Header() {
     return (
-      <div>
-        Header
-      </div>
+      <header className="w-full layout-border layout-border-bottom flex justify-center">
+        <div className="max-w-5xl flex justify-between w-full p-4 layout-border layout-border-left layout-border-right">
+          <div className="text-xl font-bold flex gap-1 items-center">
+            <Link href="/"><div>Letter-League</div></Link>
+          </div>
+          <div>
+            <TextButton text="Play Game" href="/game" />
+          </div>
+          <div className="flex gap-2">
+            <IconButton icon={Settings} label="Settings" href="/settings"></IconButton>
+            <IconButton icon={CircleUserRound} label="Account" href="/account"></IconButton>
+          </div>
+        </div>
+      </header>
     );
   }
   

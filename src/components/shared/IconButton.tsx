@@ -13,7 +13,7 @@ export default function NavButton({
     href
 }: Props) {
     return (
-        <Link href={href}>
+        <Link href={href} aria-label={label}>
             <Icon size={32} />
         </Link> 
     );

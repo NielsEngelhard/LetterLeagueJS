@@ -6,7 +6,7 @@ import Link from "next/link";
 export default function Header() {
     return (
       <header className="w-full layout-border layout-border-bottom flex justify-center">
-        <div className="max-w-5xl flex justify-between w-full p-4 layout-border layout-border-left layout-border-right">
+        <div className="max-w-7xl flex justify-between w-full p-4 layout-border layout-border-left layout-border-right">
           <div className="text-xl font-bold flex gap-1 items-center">
             <Link href="/"><div>Letter-League</div></Link>
           </div>

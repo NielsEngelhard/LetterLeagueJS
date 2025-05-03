@@ -29,6 +29,10 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
+## Authentication via next auth (Auth.js)
+
+Source: https://www.youtube.com/watch?v=TLGFTH4s_0Y&ab_channel=JacksonZheng
+
 ## Drizzle (database) Migration
 Added to package.json
 ```

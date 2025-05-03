@@ -5,8 +5,8 @@ import GlobalStatsBanner from "@/features/global-stats/components/GlobalStatsBan
 
 export default async function Home() {
   return (
-      <div>
-        home page
-      </div>
+    <div>
+      PLAY GAME
+    </div>
   );
 }

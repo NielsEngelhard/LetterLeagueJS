@@ -11,7 +11,7 @@ export default function Header() {
             <Link href="/"><div>Letter-League</div></Link>
           </div>
           <div>
-            <TextButton text="Play Game" href="/game" />
+            <TextButton text="Play Game" href="/play" />
           </div>
           <div className="flex gap-2">
             <IconButton icon={Settings} label="Settings" href="/settings"></IconButton>

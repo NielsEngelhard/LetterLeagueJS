@@ -5,3 +5,4 @@ export * from "./schema/user-stats";
 export * from "./schema/users";
 export * from "./schema/word-lists";
 export * from "./schema/word";
+export * from "./schema/global-stats";

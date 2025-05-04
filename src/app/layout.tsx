@@ -24,11 +24,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const user = null;
+
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground h-dvh flex flex-col items-center mx-auto font-mono dark uppercase`}
       >
+        Logged in:
         <Header></Header>
 
         <div className="w-full h-full flex flex-col justify-center items-center layout-border layout-border-left layout-border-right max-w-7xl">

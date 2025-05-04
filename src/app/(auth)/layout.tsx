@@ -16,16 +16,7 @@ export default async function AuthLayout({
           <GlobalStatsBanner></GlobalStatsBanner>
         </div>
         <Card className="">
-          <CardHeader>
-            <CardTitle>Welcome to Letter League</CardTitle>
-            <CardDescription>
-              <div className="">Play a quick game as a guest or create an account for a more smooth and complete user experience.</div>
-            </CardDescription>
-          </CardHeader>
-
-          <Separator></Separator>
-
-            {children}
+          {children}
         </Card>      
       </div>
 

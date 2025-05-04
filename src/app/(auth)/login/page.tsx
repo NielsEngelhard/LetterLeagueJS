@@ -3,14 +3,27 @@ import * as React from "react"
 import { Button } from "@/components/ui/button"
 import {
   CardContent,
+  CardDescription,
   CardFooter,
+  CardHeader,
+  CardTitle,
 } from "@/components/ui/card"
-import { Separator } from "@radix-ui/react-separator"
 import Link from "next/link"
+import { Separator } from "@/components/ui/separator"
 
 export default function Login() {
   return (
     <div>
+
+    <CardHeader>
+      <CardTitle>Welcome to Letter League</CardTitle>
+      <CardDescription>
+        <div className="">Play a quick game as a guest or create an account for a more smooth and complete user experience.</div>
+      </CardDescription>
+    </CardHeader>
+
+      <Separator></Separator>
+
       <CardContent>
       <div className="w-full flex flex-col gap-2">
           <Button>
@@ -25,7 +38,6 @@ export default function Login() {
             </Link>
           </Button>          
 
-          <Separator></Separator>
           <div className="text-center">or </div>
 
           <Button>
@@ -35,6 +47,7 @@ export default function Login() {
           </Button>     
         </div>
       </CardContent>
+
     <CardFooter className="flex justify-between">
       <div className="flex flex-col items-center gap-2 w-full text-sm opacity-50 uppercase">
         Continuing as guest is quick but may cause lost progress, weak reconnects, and a rougher experience.

@@ -12,14 +12,18 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import Link from "next/link"
+import { Separator } from "@/components/ui/separator"
 
 export default function Signup() {
   return (
-    <Card className="w-[350px]">
+    <div>
       <CardHeader>
         <CardTitle>Sign Up</CardTitle>
         <CardDescription>Creating an account is little effort!</CardDescription>
       </CardHeader>
+
+      <Separator></Separator>
+
       <CardContent>
         <form>
           <div className="grid w-full items-center gap-4">
@@ -49,6 +53,6 @@ export default function Signup() {
             <Link href="/login" className="text-sm opacity-75">Login</Link>
         </div>
       </CardFooter>
-    </Card>
+    </div>
   )
 }

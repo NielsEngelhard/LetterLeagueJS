@@ -8,6 +8,8 @@ import { UsersTable } from "@/drizzle/schema";
 import { eq } from "drizzle-orm";
 import { hashPassword, generateSalt } from "./password-hasher";
 import { generateRandomUsername } from "@/lib/username-generator";
+import { createUserSession } from "./session";
+import { cookies } from "next/headers";
 
 export async function signIn(unsafeData: z.infer<typeof signInSchema>) {
     const { success, data } = signInSchema.safeParse(unsafeData);
@@ -42,7 +44,14 @@ export async function signUp(unsafeData: z.infer<typeof signUpSchema>): Promise<
     
         const user = await createUser(data.email, hashedPassword, salt);        
         if (user == null) return "Unable to create account"; 
-    } catch {
+
+        await createUserSession({
+            sessionId: "",
+            userId: user.id,
+            role: "user"
+        }, await cookies());
+    } catch (ex) {
+        console.log(ex);
         return "Something went wrong while creating your account";
     }
 
@@ -56,12 +65,16 @@ export async function logOut() {
 }
 
 async function createUser(email: string, hashedPassword: string, salt: string) {
-    const [user] = await db
+    const user = await db
         .insert(UsersTable)
         .values({
             name: generateRandomUsername(),
             email: email,
-            salt: salt,            
+            hashedPassword: hashedPassword,
+            salt: salt,           
+            role: "user" 
         })
         .returning({ id: UsersTable.id });
+
+        return user[0];
 };

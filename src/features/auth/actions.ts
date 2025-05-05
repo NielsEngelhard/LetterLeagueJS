@@ -1,3 +1,5 @@
+"use server"
+
 import { z } from "zod";
 import { signInSchema, signUpSchema } from "./schemas";
 import { redirect } from "next/navigation";
@@ -41,7 +43,7 @@ export async function signUp(unsafeData: z.infer<typeof signUpSchema>): Promise<
         const user = await createUser(data.email, hashedPassword, salt);        
         if (user == null) return "Unable to create account"; 
     } catch {
-        return "Unable to create account";
+        return "Something went wrong while creating your account";
     }
 
     redirect("/play");

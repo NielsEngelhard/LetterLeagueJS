@@ -13,7 +13,8 @@ import { useState } from "react";
 
 export function SignUpForm() {
     const [error, setError] = useState<string>()
-
+    const [verifyPassword, setVerifyPassword] = useState("");
+    
     const form = useForm<z.infer<typeof signUpSchema>>({
         resolver: zodResolver(signUpSchema),
         defaultValues: {
@@ -24,31 +25,43 @@ export function SignUpForm() {
     })
 
     async function onSubmit(data: z.infer<typeof signUpSchema>) {
+        if (data.password !== verifyPassword) {
+            setError("Passwords do not match");
+            return;
+        }
+
         const error = await signUp(data);
         setError(error);
     }
 
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)}>
-            <div className="grid w-full items-center gap-4">
-
-                {/* Username */}
-                <div className="flex flex-col space-y-1.5">
-                    <Label htmlFor="username">Username/Email</Label>
-                    <Input id="username" placeholder="coolman@letterleague.com" />
-                </div>
-
-                {/* Password */}
-                <div className="flex flex-col space-y-1.5">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-3">
+                <div className="grid w-full items-center gap-4">
+                    <div className="flex flex-col space-y-1.5">
+                    <Label htmlFor="email">Email</Label>
+                    <Input id="email" placeholder="coolman@letterleague.com" {...form.register("email")} />
+                    </div>
+                    <div className="flex flex-col space-y-1.5">
+                    <Label htmlFor="username">Username</Label>
+                    <Input id="username" placeholder="coolman@letterleague.com" {...form.register("username")} />
+                    </div>            
+                    <div className="flex flex-col space-y-1.5">
                     <Label htmlFor="password">Password</Label>
-                    <Input id="password" placeholder="***********" type="password" />
-                </div>
+                    <Input id="password" placeholder="***********" type="password" {...form.register("password")} />
+                    </div>
 
-                {/* Login button */}
-                <Button>Login</Button>
-            </div>
-            </form>
+                    <div className="flex flex-col space-y-1.5">
+                    <Label htmlFor="passwordverify">Verify Password</Label>
+                    <Input id="passwordverify" placeholder="***********" type="password" value={verifyPassword} onChange={(e) => setVerifyPassword(e.target.value)} />
+                    </div>
+                </div>
+                
+                <div>
+                    {error && <p className="text-red-500">{error}</p>}
+                    <Button className="w-full" type="submit">Create Account</Button>                    
+                </div>
+            </form>            
         </Form>
     );
 } 

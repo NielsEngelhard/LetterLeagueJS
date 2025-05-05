@@ -12,7 +12,7 @@ export default function Header() {
             <div className="text-xl font-bold flex gap-1 items-center leading-none">
               <Link href="/"><div>Letter-League</div></Link>
             </div>
-            <div className="text-xs w-full text-center">
+            <div className="text-xs opacity-75 w-full text-center normal-case">
               &lt;username&gt;
             </div>            
           </div>

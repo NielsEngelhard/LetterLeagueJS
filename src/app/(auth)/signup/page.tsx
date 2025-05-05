@@ -28,7 +28,7 @@ export default function Signup() {
       </CardContent>
       <CardFooter className="flex justify-between">
         <div className="flex flex-col items-center gap-2 w-full mt-4">            
-            <Link href="/login" className="text-sm opacity-75">Already have an account? Click here to login.</Link>
+            <Link href="/login/existing" className="text-sm opacity-75">Already have an account? Click here to login.</Link>
         </div>
       </CardFooter>
     </div>

@@ -2,29 +2,26 @@ import { Button } from "@/components/ui/button";
 import { LoginForm } from "@/features/auth/components/SignInForm";
 import Link from "next/link";
 import { Separator } from "@radix-ui/react-separator";
+import { CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default async function Home() {
   return (
     <div>
-      <div>
-        <LoginForm>
+      <CardHeader>
+        <CardTitle>Login</CardTitle>
+        <CardDescription>Login with an existing account.</CardDescription>
+      </CardHeader>
 
-        </LoginForm>
-      </div>
-      <div>
-        <div className="py-2 flex justify-center">
-          <Separator></Separator>
-          <div>OR</div>
+      <Separator></Separator>
+
+      <CardContent>
+        <LoginForm></LoginForm>
+      </CardContent>
+      <CardFooter className="flex justify-between">
+        <div className="flex flex-col items-center gap-2 w-full mt-4">            
+            <Link href="/signup" className="text-sm opacity-75">Don't have an account? Click here to to make one!</Link>
         </div>
-        
-        <div className="w-full">
-          <Button className="w-full">
-              <Link href="/signup">
-                Create a new account
-              </Link>
-          </Button>          
-        </div>
-      </div>      
+      </CardFooter>
     </div>
   );
 }

@@ -6,15 +6,33 @@ import { redirect } from "next/navigation";
 import { db } from "@/drizzle/db";
 import { UsersTable } from "@/drizzle/schema";
 import { eq } from "drizzle-orm";
-import { hashPassword, generateSalt } from "./password-hasher";
+import { hashPassword, generateSalt, comparePasswords } from "./password-hasher";
 import { generateRandomUsername } from "@/lib/username-generator";
-import { createUserSession } from "./session";
+import { createUserSession, removeUserFromSession } from "./session";
 import { cookies } from "next/headers";
 
 export async function signIn(unsafeData: z.infer<typeof signInSchema>) {
     const { success, data } = signInSchema.safeParse(unsafeData);
-
     if (!success) return "Login failed";
+    
+    const user = await findUserByEmailOrUsername(data.username);
+
+    if (user == null) return "Username/password combination does not match";
+
+
+    const isCorrectPassword = await comparePasswords({
+        hashedPassword: user.hashedPassword,
+        salt: user.salt,
+        password: data.password
+    });
+
+    if (!isCorrectPassword) return "Username/password combination does not match";
+
+    await createUserSession({
+        userId: user.id,
+        role: user.role,
+        sessionId: ""
+    }, await cookies());
 
     redirect("/play");
 }
@@ -59,7 +77,7 @@ export async function signUp(unsafeData: z.infer<typeof signUpSchema>): Promise<
 }
 
 export async function logOut() {
-
+    removeUserFromSession(await cookies());
     
     redirect("/");
 }
@@ -78,3 +96,13 @@ async function createUser(email: string, hashedPassword: string, salt: string) {
 
         return user[0];
 };
+
+async function findUserByEmailOrUsername(usernameOrEmail: string) {
+    const usernameIsEmail = usernameOrEmail.includes("@");
+  
+    const users = usernameIsEmail
+      ? await db.select().from(UsersTable).where(eq(UsersTable.email, usernameOrEmail))
+      : await db.select().from(UsersTable).where(eq(UsersTable.name, usernameOrEmail));
+  
+    return users[0] ?? null;
+  }

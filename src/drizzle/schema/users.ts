@@ -6,15 +6,13 @@ import { UserSessionTable } from "./user-session";
 import { UserStatsTable } from "./user-stats";
 import { userRoleEnum } from "./enum/user-role";
 
-
-
 export const UsersTable = pgTable("users", {
     id,
     name: text().notNull(),
     imageUrl: text(),
     email: text().notNull(),
-    hashedPassword: text(),
-    salt: text(),
+    hashedPassword: text().notNull(),
+    salt: text().notNull(),
     role: userRoleEnum().notNull(),
     createdAt
 });

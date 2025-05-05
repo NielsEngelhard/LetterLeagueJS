@@ -5,16 +5,11 @@ import { UserSessionTable } from "@/drizzle/schema/user-session";
 import { userRoles } from "@/drizzle/schema/enum/user-role";
 import { and, eq, gt } from "drizzle-orm";
 import { UsersTable } from "@/drizzle/schema";
+import { sessionSchema } from "./schemas";
 
 const SESSION_EXPIRATION_DAYS = 7;
 const SESSION_EXPIRATION_SECONDS = 60 * 60 * 24 * SESSION_EXPIRATION_DAYS;
 const COOKIE_SESSION_KEY = "session-id";
-
-const sessionSchema = z.object({
-    sessionId: z.string(),
-    userId: z.string().uuid(),
-    role: z.enum(userRoles)
-});
 
 type UserSession = z.infer<typeof sessionSchema>;
 
@@ -39,6 +34,8 @@ export async function createUserSession(userSession: UserSession, cookies: Cooki
     const sessionId = crypto.randomBytes(512).toString("hex").normalize();
     userSession.sessionId = sessionId;
 
+    console.log(userSession);
+
     await createOrUpdateUserSession(userSession);
 
     setCookie(sessionId, cookies);
@@ -58,6 +55,14 @@ export async function getUserFromSession(cookies: Pick<Cookies, "get">) {
   if (sessionId == null) return null;
 
   return getSessionAndUserById(sessionId);
+}
+
+export async function removeUserFromSession(cookies: Pick<Cookies, "get" | "delete">) {
+  const sessionId = cookies.get(COOKIE_SESSION_KEY)?.value;
+  if (sessionId == null) return null;
+
+  await removeUserSessionFromDb(sessionId);
+  cookies.delete(COOKIE_SESSION_KEY);
 }
 
 function setCookie(sessionId: string, cookies: Pick<Cookies, "set">) {
@@ -81,4 +86,8 @@ async function getSessionAndUserById(sessionId: string) {
               .innerJoin(UsersTable, eq(UserSessionTable.userId, UsersTable.id));    
 
   return user[0];
+}
+
+async function removeUserSessionFromDb(sessionId: string) {
+  await db.delete(UserSessionTable).where(eq(UserSessionTable.sessionId, sessionId));
 }

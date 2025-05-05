@@ -4,8 +4,8 @@ import { relations } from "drizzle-orm";
 import { userRoleEnum } from "./enum/user-role";
 
 export const UserSessionTable = pgTable("user_sessions", {
-    userId: uuid().primaryKey().references(() => UsersTable.id, { onDelete: "cascade" }),
-    sessionId: text().notNull().unique(),
+    sessionId: text().notNull().unique().primaryKey(),
+    userId: uuid().references(() => UsersTable.id, { onDelete: "cascade" }),
     role: userRoleEnum("role").notNull(),
     expireDateTime: timestamp({ withTimezone: true }).notNull()
 });

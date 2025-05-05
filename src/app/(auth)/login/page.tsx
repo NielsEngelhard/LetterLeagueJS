@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/card"
 import Link from "next/link"
 import { Separator } from "@/components/ui/separator"
+import TextInStripe from "@/components/shared/TextInStripe"
 
 export default function Login() {
   return (
@@ -38,21 +39,17 @@ export default function Login() {
             </Link>
           </Button>          
 
-          <div className="text-center">or </div>
+          <TextInStripe>
+            <div>OR</div>
+          </TextInStripe>
 
           <Button>
               <Link href="login/guest">
-                Continue as a <b>Guest user</b>
+                Continue as a <b>Guest user<sup> &lt;beta&gt;</sup></b>
               </Link>
           </Button>     
         </div>
       </CardContent>
-
-    <CardFooter className="flex justify-between">
-      <div className="flex flex-col items-center gap-2 w-full text-sm opacity-50 uppercase">
-        Continuing as guest is quick but may cause lost progress, weak reconnects, and a rougher experience.
-      </div>
-    </CardFooter>      
     </div>
   )
 }

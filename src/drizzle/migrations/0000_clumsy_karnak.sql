@@ -4,15 +4,15 @@ CREATE TABLE "users" (
 	"name" text NOT NULL,
 	"imageUrl" text,
 	"email" text NOT NULL,
-	"hashedPassword" text,
-	"salt" text,
+	"hashedPassword" text NOT NULL,
+	"salt" text NOT NULL,
 	"role" "user_role" NOT NULL,
 	"createdAt" timestamp with time zone DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE "user_sessions" (
-	"userId" uuid PRIMARY KEY NOT NULL,
-	"sessionId" text NOT NULL,
+	"sessionId" text PRIMARY KEY NOT NULL,
+	"userId" uuid,
 	"role" "user_role" NOT NULL,
 	"expireDateTime" timestamp with time zone NOT NULL,
 	CONSTRAINT "user_sessions_sessionId_unique" UNIQUE("sessionId")

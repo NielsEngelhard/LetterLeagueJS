@@ -36,7 +36,8 @@ Source: https://www.youtube.com/watch?v=TLGFTH4s_0Y&ab_channel=JacksonZheng
 ## Drizzle (database) Migration
 Added to package.json
 ```
-    "db:generate": "drizzle-kit generate",
-    "db:migrate": "drizzle-kit migrate",
-    "db:studio": "drizzle-kit studio"
+    "db:generate" | generate a migration file
+    "db:migrate" | apply migration to database
+    "db:studio" | open drizzle studio for inspecting data (can also use pgadmin)
+    "db:seed" | seed the database with (initial) data
 ```

@@ -1,11 +1,16 @@
 import { hashPassword } from "@/features/auth/password-hasher";
 import { db } from "../db";
 import { GlobalStatsTable, UsersTable } from "../schema";
+import { drizzle } from "drizzle-orm/node-postgres";
+import { eq } from "drizzle-orm";
 
 async function seed() {
     console.log('🌱 Seeding database...');
 
-    console.log('Database client:', db);
+      const db = drizzle("poepstoep");
+
+      var lol = await db.select().from(GlobalStatsTable).where(eq(GlobalStatsTable.id, 1));
+      console.log(lol);
 
     try {
 

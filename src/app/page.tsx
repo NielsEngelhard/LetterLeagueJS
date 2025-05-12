@@ -38,11 +38,11 @@ const Home: React.FC = () => {
             {/* Demo Preview */}
             <div className="bg-card rounded-xl p-6 md:p-8 max-w-xl mx-auto shadow-lg">
               <div className="flex justify-center mb-4 gap-3">
+                <LetterTile letter="S" status="correct" />
+                <LetterTile letter="P" status="wrong-position" />
+                <LetterTile letter="E" status="correct" />
+                <LetterTile letter="L" status="incorrect" />
                 <LetterTile letter="L" status="correct" />
-                <LetterTile letter="I" status="wrong-position" />
-                <LetterTile letter="N" status="correct" />
-                <LetterTile letter="G" status="incorrect" />
-                <LetterTile letter="O" status="correct" />
               </div>
               <div className="text-muted-foreground text-sm">
                 Guess the secret word - green means correct position, yellow means right letter but wrong position!
@@ -54,7 +54,7 @@ const Home: React.FC = () => {
         {/* Features Section */}
         <section className="py-16 bg-card">
           <div className="max-w-7xl mx-auto px-6">
-            <h2 className="font-fraktur text-3xl md:text-4xl mb-12 text-center">Game Features</h2>
+            <h2 className="font-fraktur text-3xl md:text-4xl mb-12 text-center font-special">Game Features</h2>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="bg-card p-6 rounded-lg shadow-md">
@@ -84,7 +84,7 @@ const Home: React.FC = () => {
         {/* Call to Action */}
         <section className="py-16 px-6">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="font-fraktur text-2xl md:text-3xl mb-6">Ready to Challenge Your Friends?</h2>
+            <h2 className="font-fraktur text-2xl md:text-3xl mb-6 font-special">Ready to Challenge Your Friends?</h2>
             <p className="text-muted-foreground mb-8">
               Create a game room and invite your friends to join. See who can guess the most words!
             </p>

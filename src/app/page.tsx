@@ -12,7 +12,7 @@ const Home: React.FC = () => {
         {/* Hero Section */}
         <section className="py-16 md:py-24 px-6">
           <div className="max-w-7xl mx-auto text-center">
-            <h1 className="font-fraktur text-4xl md:text-6xl lg:text-7xl mb-6 text-primary">
+            <h1 className="font-special text-4xl md:text-6xl lg:text-7xl mb-6 text-primary">
               {APP_NAME} Together
             </h1>
             <p className="text-xl md:text-2xl mb-12 max-w-3xl mx-auto text-muted-foreground">

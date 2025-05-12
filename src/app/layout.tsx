@@ -1,8 +1,14 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import localFont from 'next/font/local'
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+
+const specialFont = localFont({
+  src: '../../public/fonts/special.otf',
+  variable: '--font-special',
+})
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,7 +32,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`text-foreground ${geistSans.variable} ${geistMono.variable} antialiased dark`}>
+      <body className={`text-foreground ${geistSans.variable} ${geistMono.variable} ${specialFont.variable} antialiased dark`}>
         
         <Header></Header>
 

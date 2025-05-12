@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import LetterTile from '@/components/ui/letterTile';
+import { APP_NAME } from '@/lib/global-constants';
 
 const Home: React.FC = () => {
 
@@ -11,8 +12,8 @@ const Home: React.FC = () => {
         {/* Hero Section */}
         <section className="py-16 md:py-24 px-6">
           <div className="max-w-7xl mx-auto text-center">
-            <h1 className="font-fraktur text-4xl md:text-6xl lg:text-7xl mb-6 text-lingo-purple">
-              Lingo Together
+            <h1 className="font-fraktur text-4xl md:text-6xl lg:text-7xl mb-6 text-primary">
+              {APP_NAME} Together
             </h1>
             <p className="text-xl md:text-2xl mb-12 max-w-3xl mx-auto text-muted-foreground">
               The classic Dutch word game, now multiplayer. Challenge your friends to find the hidden words before time runs out!

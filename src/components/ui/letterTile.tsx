@@ -24,11 +24,11 @@ const LetterTile: React.FC<LetterTileProps> = ({ letter, status, delay = 0 }) =>
   }, [letter, delay]);
 
   const statusClasses = {
-    "correct": "letter-correct",
-    "wrong-position": "letter-wrong-position",
-    "incorrect": "letter-incorrect",
-    "idle": "letter-idle",
-    "active": "letter-active",
+    "correct": "bg-letter-correct",
+    "wrong-position": "bg-letter-wrong-position",
+    "incorrect": "bg-letter-incorrect",
+    "idle": "bg-letter-idle",
+    "active": "bg-letter-active",
   };
 
   return (

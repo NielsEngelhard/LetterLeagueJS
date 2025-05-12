@@ -28,7 +28,7 @@
   --radius-xl: calc(var(--radius) + 4px);
 
   --color-letter-correct: var(--letter-correct);
-  --color-letter-wrong: var(--letter-wrong);
+  --color-letter-wrong-position: var(--letter-wrong-position);
   --color-letter-incorrect: var(--letter-incorrect);
 }
 
@@ -87,4 +87,19 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.letter-tile {
+    display: flex;
+    height: 3.6rem;
+    width: 3.6rem;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 700;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(.4,0,.2,1);
+    transition-duration: .2s;
+    animation-duration: .2s;
 }

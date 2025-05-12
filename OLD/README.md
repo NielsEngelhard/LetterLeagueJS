@@ -29,8 +29,15 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Authentication via next auth (Auth.js)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Source: https://www.youtube.com/watch?v=TLGFTH4s_0Y&ab_channel=JacksonZheng
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Drizzle (database) Migration
+Added to package.json
+```
+    "db:generate" | generate a migration file
+    "db:migrate" | apply migration to database
+    "db:studio" | open drizzle studio for inspecting data (can also use pgadmin)
+    "db:seed" | seed the database with (initial) data
+```

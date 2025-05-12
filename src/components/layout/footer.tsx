@@ -1,3 +1,4 @@
+import { APP_NAME } from '@/lib/global-constants';
 import React from 'react';
 
 const Footer: React.FC = () => {
@@ -5,8 +6,8 @@ const Footer: React.FC = () => {
     <footer className="w-full py-6 px-6 border-t border-muted">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
         <div className="mb-4 md:mb-0">
-          <h2 className="font-fraktur text-xl text-lingo-purple">Lingo Together</h2>
-          <p className="text-muted-foreground text-sm">Play the Dutch word game with friends</p>
+          <h2 className="font-fraktur text-xl text-lingo-purple">{APP_NAME} Together</h2>
+          <p className="text-muted-foreground text-sm">Play solo or multiplayer!</p>
         </div>
         
         <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8">
@@ -31,7 +32,7 @@ const Footer: React.FC = () => {
       </div>
       
       <div className="mt-8 text-center text-xs text-muted-foreground">
-        <p>&copy; {new Date().getFullYear()} Lingo Together. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()} {APP_NAME}. Created by Turing Solutions.</p>
       </div>
     </footer>
   );

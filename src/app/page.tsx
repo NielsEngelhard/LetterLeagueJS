@@ -6,7 +6,7 @@ import { APP_NAME } from '@/lib/global-constants';
 const Home: React.FC = () => {
 
   return (
-    <div className="min-h-screen flex flex-col bg-lingo-darkBg">
+    <div className="min-h-screen flex flex-col">
       
       <main className="flex-1">
         {/* Hero Section */}
@@ -16,7 +16,7 @@ const Home: React.FC = () => {
               {APP_NAME} Together
             </h1>
             <p className="text-xl md:text-2xl mb-12 max-w-3xl mx-auto text-muted-foreground">
-              The classic Dutch word game, now multiplayer. Challenge your friends to find the hidden words before time runs out!
+              Guess words, earn points, and see who’s the ultimate word master! Play solo or team up to take your word skills to the next level.
             </p>
             
             <div className="flex flex-wrap justify-center gap-4 mb-12">
@@ -84,9 +84,9 @@ const Home: React.FC = () => {
         {/* Call to Action */}
         <section className="py-16 px-6">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="font-fraktur text-2xl md:text-3xl mb-6 font-special">Ready to Challenge Your Friends?</h2>
+            <h2 className="font-fraktur text-2xl md:text-3xl mb-6 font-special">Ready to Play?</h2>
             <p className="text-muted-foreground mb-8">
-              Create a game room and invite your friends to join. See who can guess the most words!
+              Looking for a quick game? Jump in as a guest! Want more features? Log in or sign up to unlock the full experience!
             </p>
             <Button 
               size="lg" 

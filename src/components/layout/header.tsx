@@ -14,6 +14,7 @@ const Header: React.FC = () => {
       
       <nav className="hidden md:flex space-x-6">
         <Button 
+          href="/"
           variant={pathname.startsWith("/") ? "default" : "ghost"}
           className="text-base"
         >
@@ -27,11 +28,11 @@ const Header: React.FC = () => {
         </Button>
         <Button 
           variant={pathname.startsWith("/lobby") ? "default" : "ghost"}
-          className="text-base"
-        >
+          className="text-base">
           Join Game
         </Button>
         <Button 
+          href="/rules"
           variant={pathname.startsWith("/rules") ? "default" : "ghost"}
           className="text-base"
         >

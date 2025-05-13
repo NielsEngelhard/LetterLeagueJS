@@ -4,47 +4,42 @@ import React from 'react';
 import { Button } from "@/components/ui/button";
 import { usePathname } from 'next/navigation';
 import Logo from './logo';
+import Link from 'next/link';
 
 const Header: React.FC = () => {
   const pathname = usePathname();
 
   return (
     <header className="w-full py-4 px-6 flex items-center justify-between">
-      <Logo></Logo>
+      <Link href="/">
+        <Logo></Logo>
+      </Link>
       
       <nav className="hidden md:flex space-x-6">
         <Button 
-          href="/"
-          variant={pathname.startsWith("/") ? "default" : "ghost"}
-          className="text-base"
-        >
-          Home
-        </Button>
-        <Button 
-          variant={pathname.startsWith("/play") ? "default" : "ghost"}
-          className="text-base"
-        >
-          Play
-        </Button>
-        <Button 
-          variant={pathname.startsWith("/lobby") ? "default" : "ghost"}
+          href='/play/solo'
+          variant={pathname.includes("/solo") ? "default" : "ghost"}
           className="text-base">
-          Join Game
+            Solo
         </Button>
+        <Button 
+          href='/play/multiplayer'
+          variant={pathname.includes("/multiplayer") ? "default" : "ghost"}
+          className="text-base">
+            Multiplayer
+        </Button>                
         <Button 
           href="/rules"
-          variant={pathname.startsWith("/rules") ? "default" : "ghost"}
-          className="text-base"
-        >
-          Rules
+          variant={pathname.includes("/rules") ? "default" : "ghost"}
+          className="text-base">
+            Rules
         </Button>
       </nav>
       
       <Button 
         variant="outline" 
         className="md:hidden"
-        onClick={() => console.log("Open mobile menu")}
-      >
+        onClick={() => console.log("Open mobile menu")}>
         Menu
       </Button>
     </header>

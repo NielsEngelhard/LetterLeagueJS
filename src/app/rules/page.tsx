@@ -3,7 +3,7 @@ import React from 'react';
 
 const Rules: React.FC = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-lingo-darkBg">
+    <div className="min-h-screen flex flex-col">
       
       <main className="flex-1 py-8 px-6">
         <div className="max-w-3xl mx-auto">
@@ -107,7 +107,7 @@ const Rules: React.FC = () => {
             </div>
           </div>
           
-          <div className="bg-lingo-lightBg rounded-xl p-6 shadow-lg">
+          <div className="bg-card rounded-xl p-6 shadow-lg">
             <h2 className="text-2xl font-fraktur mb-6">Tips for Success</h2>
             
             <ul className="list-disc pl-5 space-y-2 text-muted-foreground">

@@ -43,6 +43,8 @@ const Home: React.FC = () => {
                 <LetterTile letter="E" status="correct" />
                 <LetterTile letter="L" status="incorrect" />
                 <LetterTile letter="L" status="correct" />
+                <LetterTile letter="I" status="incorrect" />
+                <LetterTile letter="T" status="wrong-position" />
               </div>
               <div className="text-muted-foreground text-sm">
                 Guess the secret word - green means correct position, yellow means right letter but wrong position!

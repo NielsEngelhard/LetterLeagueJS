@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Calendar, BookOpen, Dices } from "lucide-react";
+import PageTitle from '@/components/layout/pageTitle';
 
 const Solo: React.FC = () => {
   
@@ -9,10 +10,8 @@ const Solo: React.FC = () => {
       
       <main className="flex-1 py-8 px-6">
         <div className="max-w-4xl mx-auto">
-          <div className="mb-8 text-center">
-            <h1 className="font-fraktur text-3xl md:text-4xl mb-4">Solo Play</h1>
-            <p className="text-muted-foreground">Challenge yourself with different word games</p>
-          </div>
+
+          <PageTitle title='Solo Play' subText='Play a game all by yourself'></PageTitle>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Word of the Day */}

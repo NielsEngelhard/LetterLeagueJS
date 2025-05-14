@@ -11,7 +11,7 @@ interface Props {
 
 export default function PickGameModeCard({title, subText, btnText, Icon}: Props) {
   return (
-    <Card centerContent={true}>
+    <Card centerContent={true} growOnHover={true}>
         <div className="mb-4 w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mx-auto">
             <Icon className="w-6 h-6 text-primary" />
         </div>

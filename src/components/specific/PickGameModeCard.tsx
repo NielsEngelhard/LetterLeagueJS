@@ -1,7 +1,6 @@
 import React from "react";
 import { Button } from "../ui/button";
 import Card from "../ui/card";
-import { LucideIcon } from "lucide-react";
 
 interface Props {
     title: string;
@@ -12,7 +11,7 @@ interface Props {
 
 export default function PickGameModeCard({title, subText, btnText, Icon}: Props) {
   return (
-    <Card>
+    <Card centerContent={true}>
         <div className="mb-4 w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mx-auto">
             <Icon className="w-6 h-6 text-primary" />
         </div>

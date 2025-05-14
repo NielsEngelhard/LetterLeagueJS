@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { usePathname } from 'next/navigation';
 import Logo from './logo';
 import Link from 'next/link';
+import { Signature } from 'lucide-react';
 
 const Header: React.FC = () => {
   const pathname = usePathname();
@@ -16,6 +17,12 @@ const Header: React.FC = () => {
       </Link>
       
       <nav className="hidden md:flex space-x-6">
+        <Button 
+          href='/'
+          variant={pathname == "/" ? "default" : "ghost"}
+          className="text-base">
+            Home
+        </Button>        
         <Button 
           href='/play/solo'
           variant={pathname.includes("/solo") ? "default" : "ghost"}
@@ -35,6 +42,21 @@ const Header: React.FC = () => {
             Rules
         </Button>
       </nav>
+
+      <div className='flex flex-row gap-2'>
+        <Button 
+          href="/login"
+          variant="ghost"
+          className="text-base">
+            Log In
+        </Button>
+        <Button 
+          href="/login"
+          variant="default"
+          className="text-base">
+             <Signature></Signature> Sign Up
+        </Button>        
+      </div>
       
       <Button 
         variant="outline" 

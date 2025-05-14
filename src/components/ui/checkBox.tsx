@@ -2,45 +2,45 @@ import * as React from "react";
 import { Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-interface CheckboxProps extends React.InputHTMLAttributes<HTMLInputElement> {
-    onCheckedChange: (checked: boolean) => void;
+interface CheckboxProps {
+  id: string; 
+  checked: boolean;
+  onToggle: () => void;
+  label?: string;
 }
 
-const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
-  ({ className, onCheckedChange, ...props }, ref,) => {
-    const [checked, setChecked] = React.useState(props.checked || false);
-
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      setChecked(event.target.checked);
-      onCheckedChange(checked);
-    };
-
-    return (
-      <div
-        className={cn(
-          "peer h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
-          checked ? "bg-primary text-primary-foreground" : "",
-          className
-        )}
-      >
+export default function Checkbox({ id, checked, onToggle, label }: CheckboxProps) {
+  return (
+    <div className="flex gap-2 items-center">
+      <label htmlFor={id} className="cursor-pointer flex items-center">
+        {/* Hidden Checkbox */}
         <input
+          id={id}
           type="checkbox"
-          ref={ref}
           className="hidden"
           checked={checked}
-          onChange={handleChange}
-          {...props}
+          onChange={onToggle}
         />
-        {checked && (
-          <div className={cn("flex items-center justify-center text-current")}>
-            <Check className="h-4 w-4" />
-          </div>
-        )}
-      </div>
-    );
-  }
-);
+        {/* Custom Checkbox Visual */}
+        <div
+          className={cn(
+            "h-4 w-4 shrink-0 rounded-sm border border-primary flex items-center justify-center",
+            checked ? "bg-primary text-primary-foreground" : ""
+          )}
+        >
+          {checked && <Check className="h-4 w-4" />}
+        </div>
+      </label>
 
-Checkbox.displayName = "Checkbox";
-
-export { Checkbox };
+      {/* Label Text */}
+      {label && (
+        <label
+          htmlFor={id}
+          className="text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 select-none"
+        >
+          {label}
+        </label>        
+      )}
+    </div>
+  );
+}

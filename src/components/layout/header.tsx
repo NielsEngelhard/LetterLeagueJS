@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { usePathname } from 'next/navigation';
 import Logo from './logo';
 import Link from 'next/link';
-import { Signature } from 'lucide-react';
+import { Signature, UserPlus } from 'lucide-react';
 
 const Header: React.FC = () => {
   const pathname = usePathname();
@@ -54,7 +54,7 @@ const Header: React.FC = () => {
           href="/signup"
           variant="default"
           className="text-base">
-             <Signature></Signature> Sign Up
+             <UserPlus></UserPlus> Sign Up
         </Button>        
       </div>
       

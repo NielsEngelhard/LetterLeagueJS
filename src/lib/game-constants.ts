@@ -7,5 +7,6 @@ export enum GameMode {
 
 export enum GameVisibility {
     Public,
-    Private
+    Private,
+    FriendsOnly
 }

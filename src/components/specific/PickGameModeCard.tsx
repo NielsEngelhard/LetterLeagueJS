@@ -6,7 +6,7 @@ interface Props {
     title: string;
     subText: string;
     btnText: string;
-    Icon: React.ElementType; // Change to ElementType or FunctionComponent
+    Icon: React.ElementType;
 }
 
 export default function PickGameModeCard({title, subText, btnText, Icon}: Props) {

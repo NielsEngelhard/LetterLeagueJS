@@ -74,10 +74,10 @@ function setCookie(sessionId: string, cookies: Pick<Cookies, "set">) {
     })
 }
 
-async function getSessionAndUserById(sessionId: string) {
+async function getSessionAndUserById(sessionId: string): Promise<UserModel> {
   const now = new Date();
 
-  const user = await db.select()
+  const result = await db.select()
               .from(UserSessionTable)
               .where(and(
                 eq(UserSessionTable.sessionId, sessionId),
@@ -85,7 +85,13 @@ async function getSessionAndUserById(sessionId: string) {
               ))              
               .innerJoin(UsersTable, eq(UserSessionTable.userId, UsersTable.id));    
 
-  return user[0];
+  var user = result[0] ?? new Error("Session not found or expired");
+
+  return {
+    id: user.users.id,
+    username: user.users.id,
+    email: user.users.email,
+  };
 }
 
 async function removeUserSessionFromDb(sessionId: string) {

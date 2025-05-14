@@ -38,14 +38,28 @@ export default function SignUpForm() {
         setError(error);
     }    
 
+function checkPasswordsMatch(password: string, verifyPassword: string) {
+    if (password === verifyPassword) {
+        setPasswordsMatch(true);
+    } else {
+        setPasswordsMatch(false);
+    }
+}
+
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
                 <CardContent className="space-y-4">
                     <Input id="username" type="text" label="Username" placeholder="CoolBanana22" required {...form.register("username")} />
                     <Input id="email" type="email" label="Email" placeholder="name@example.com" required {...form.register("email")} />
-                    <Input id="password" type="password" label="Password" placeholder="**********" required {...form.register("password")} />
-                    <Input id="verifyPassword" type="password" label="Verify Password" placeholder="**********" required value={verifyPassword} onChange={(e) => setVerifyPassword(e.target.value)} />
+                    <Input id="password" type="password" label="Password" placeholder="**********" required {...form.register("password")} onChange={(e) => {
+                        form.setValue("password", e.target.value);
+                        checkPasswordsMatch(e.target.value, verifyPassword);
+                    }} />
+                    <Input id="verifyPassword" type="password" label="Verify Password" placeholder="**********" required value={verifyPassword} onChange={(e) => {
+                        setVerifyPassword(e.target.value);
+                        checkPasswordsMatch(form.getValues("password"), e.target.value);
+                    }} />
                     
                     <div className="flex items-center space-x-2">
                         <Checkbox id="terms" checked={acceptedTerms} label="I accept the terms and conditions" onToggle={() => {

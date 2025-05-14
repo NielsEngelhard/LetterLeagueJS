@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { LoginForm } from "@/features/auth/components/SignInForm";
 import Link from "next/link";
 import { Separator } from "@radix-ui/react-separator";
-import { CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card/card";
 
 export default async function Home() {
   return (

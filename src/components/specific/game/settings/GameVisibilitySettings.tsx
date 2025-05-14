@@ -2,7 +2,7 @@
 
 import MutedPickItemGrid from "@/components/shared/MutedPickItemGrid";
 import PickItemGrid from "@/components/shared/PickItemGrid";
-import Card from "@/components/ui/card";
+import Card from "@/components/ui/card/card";
 import { Globe, HeartHandshakeIcon, Lock } from "lucide-react";
 import { useState } from "react";
 

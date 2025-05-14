@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 import WordLengthSettings from './WordLengthSettings';
 import MaxAttemptSettings from './MaxAttemptSettings';
 import TimePerTurnSettings from './TimePerTurnSettings';
-import Card from '@/components/ui/card';
+import Card from '@/components/ui/card/card';
 import GameVisibilitySettings from './GameVisibilitySettings';
 import { ArrowLeft } from 'lucide-react';
 

@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card/card";
 import { Separator } from "@/components/ui/separator";
 import GlobalStatsBanner from "@/features/global-stats/components/GlobalStatsBanner";
 

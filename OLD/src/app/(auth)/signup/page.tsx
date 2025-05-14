@@ -8,7 +8,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
+} from "@/components/ui/card/card"
 import Link from "next/link"
 import { Separator } from "@/components/ui/separator"
 import { SignUpForm } from "@/features/auth/components/SignUpForm"

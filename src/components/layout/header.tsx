@@ -51,7 +51,7 @@ const Header: React.FC = () => {
             Log In
         </Button>
         <Button 
-          href="/login"
+          href="/signup"
           variant="default"
           className="text-base">
              <Signature></Signature> Sign Up

@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import Card from "@/components/ui/card";
+import Card from "@/components/ui/card/card";
 
 export default function CreateGameCard() {
     return (

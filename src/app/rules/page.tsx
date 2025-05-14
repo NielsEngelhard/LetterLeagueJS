@@ -1,5 +1,5 @@
 import PageTitle from '@/components/layout/pageTitle';
-import Card from '@/components/ui/card';
+import Card from '@/components/ui/card/card';
 import LetterTile from '@/components/ui/letterTile';
 import React from 'react';
 

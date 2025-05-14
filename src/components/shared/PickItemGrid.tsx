@@ -20,13 +20,12 @@ export default function PickItemGrid({items, value, title, valueIndicator, onCha
                 {valueIndicator && <span className="text-sm text-muted-foreground">{value} {valueIndicator}</span>}
             </div>
             <div className="grid gap-2" style={{ gridTemplateColumns: `repeat(${items.length}, minmax(0, 1fr))` }}>
-            {items.map((item) => (
-                <Card variant="clickableOption" active={item == value} onClick={() => {
-                }}>
+            {items.map((item, index) => (
+                <Card key={index} variant="clickableOption" active={item == value ? 'clickableOptionActive' : 'none'} onClick={() => { onChange(item) }}>
                     <div className="flex flex-row justify-center items-center text-center">
                         {Icon && <Icon className="w-4 h-4 text-text mr-1" />}
                         {item}
-                        {valuePostfix && <div>{valuePostfix}</div>}                        
+                        {valuePostfix && <div>{valuePostfix}</div>}
                     </div>
                 </Card>
             ))}

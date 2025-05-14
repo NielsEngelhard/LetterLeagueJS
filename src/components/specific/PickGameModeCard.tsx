@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { Button } from "../ui/button";
 import Card from "../ui/card";
@@ -7,11 +9,12 @@ interface Props {
     subText: string;
     btnText: string;
     Icon: React.ElementType;
+    onClick?: () => void;
 }
 
-export default function PickGameModeCard({title, subText, btnText, Icon}: Props) {
+export default function PickGameModeCard({title, subText, btnText, Icon, onClick}: Props) {
   return (
-    <Card centerContent={true} growOnHover={true}>
+    <Card centerContent={true} growOnHover={true} onClick={onClick}>
         <div className="mb-4 w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mx-auto">
             <Icon className="w-6 h-6 text-primary" />
         </div>

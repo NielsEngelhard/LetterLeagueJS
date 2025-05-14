@@ -1,9 +1,25 @@
+"use client";
+
 import React from 'react';
 import { Calendar, BookOpen, Dices } from "lucide-react";
 import PageTitle from '@/components/layout/pageTitle';
 import PickGameModeCard from '@/components/specific/PickGameModeCard';
+import { useRouter } from 'next/navigation';
 
 const Solo: React.FC = () => {
+  const router = useRouter();
+
+  function handleWordOfTheDayClicked() {
+    console.log("Word of the Day clicked");
+  }
+
+  function handleCustomGameClicked() {
+    router.push('/play/solo/custom');
+  }
+  
+  function handleRandomGameClicked() {
+    console.log("Random game clicked");
+  }  
   
   return (
     <div>
@@ -16,6 +32,7 @@ const Solo: React.FC = () => {
           subText='A new challenge every day.'
           btnText='Play Daily'
           Icon={Calendar}
+          onClick={handleWordOfTheDayClicked}
         ></PickGameModeCard>
         
         {/* Custom Game */}
@@ -24,6 +41,7 @@ const Solo: React.FC = () => {
           subText='Choose your own difficulty level, word length, and number of attempts.'
           btnText='Create Custom'
           Icon={BookOpen}
+          onClick={handleCustomGameClicked}
         ></PickGameModeCard>
         
         {/* Random Game */}
@@ -32,6 +50,7 @@ const Solo: React.FC = () => {
           subText='Jump right in with a random word challenge of varying difficulty.'
           btnText='Play Random'
           Icon={Dices}
+          onClick={handleRandomGameClicked}
         ></PickGameModeCard>
       </div>
   </div>

@@ -9,6 +9,7 @@ import MaxAttemptSettings from './MaxAttemptSettings';
 import TimePerTurnSettings from './TimePerTurnSettings';
 import Card from '@/components/ui/card';
 import GameVisibilitySettings from './GameVisibilitySettings';
+import { ArrowLeft } from 'lucide-react';
 
 interface GameSettingsProps {
     mode: GameMode;
@@ -22,16 +23,16 @@ const GameSettings: React.FC<GameSettingsProps> = ({mode, visibility = GameVisib
     console.log("handle start game");
   };
 
-  function navBackToSolo() {
-        router.push('/play/solo')
-  }
-
-  function navBackToMultiplayer() {
-    router.push('/play/multiplayer')
+  function handleBackClicked() {
+    if (mode == GameMode.MultiplayerCustom) {
+      router.push('/play/multiplayer')
+    } else {
+      router.push('/play/solo')
+    }
   }
 
   return (
-    <div>
+    <div className=''>
         
         <Card className='flex flex-col gap-6'>
             <WordLengthSettings></WordLengthSettings>
@@ -42,23 +43,18 @@ const GameSettings: React.FC<GameSettingsProps> = ({mode, visibility = GameVisib
 
             <GameVisibilitySettings></GameVisibilitySettings>      
         </Card>
-        
-        <div className="flex flex-col sm:flex-row gap-3 justify-center">
-        <Button 
-            variant="outline" 
-            onClick={() => mode === GameMode.MultiplayerCustom ? navBackToMultiplayer() : navBackToSolo()}
-            className="px-6 py-1 h-9"
-            size="sm"
-        >
-            Back
-        </Button>
-        <Button 
-            onClick={handleStartGame}
-            className="px-6 py-1 h-9"
-            size="sm"
-        >
-            Start Game
-        </Button>
+
+        <div className='flex items-center relative mt-6'>
+            
+            {/* Back btn */}
+            <div className='mr-auto'>
+              <Button className='w-full' size="lg" variant="outline" onClick={handleBackClicked}><ArrowLeft/> Back</Button>
+            </div>
+
+            {/* Submit btn */}
+            <div className='absolute left-1/2 -translate-x-1/2'>
+              <Button className='w-full' size="lg" onClick={handleStartGame}>Start Game</Button>
+            </div>
         </div>
     </div>
   );

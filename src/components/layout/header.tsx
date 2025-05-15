@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Button } from "@/components/ui/button";
 import Logo from './logo';
 import Link from 'next/link';
-import { UserPlus } from 'lucide-react';
+import { User, UserPlus } from 'lucide-react';
 import { getCurrentUser } from '@/features/auth/current-user';
 import HeaderNavItem from './headerNavItem';
 
@@ -24,7 +24,7 @@ const Header = async () => {
 
       {!user ? (
       <div className='flex flex-row gap-2'>
-        {/* <Button 
+        <Button 
           href="/login"
           variant="ghost"
           className="text-base">
@@ -35,10 +35,15 @@ const Header = async () => {
           variant="default"
           className="text-base">
              <UserPlus></UserPlus> Sign Up
-        </Button>         */}
+        </Button>        
       </div>        
       ) : (
-        <div>lol</div>
+        <Button 
+          href="/profile"
+          variant="default"
+          className="text-base">
+             <User></User> lols
+        </Button>    
       ) }
       
       {/* <Button 

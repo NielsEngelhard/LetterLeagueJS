@@ -2,10 +2,10 @@
 
 import Card from "@/components/ui/card/card";
 import { CardHeader, CardTitle, CardContent, CardDescription, CardFooter } from "@/components/ui/card/cardContent";
-import { Label } from "../../../../OLD/src/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import CenterContent from "@/components/layout/centerContent";
+import { Label } from "@/components/ui/label";
 
 function handleLogin() {
     console.log("Login button clicked");
@@ -37,7 +37,7 @@ export default function Login() {
                   <Label htmlFor="password">Password</Label>
                   <Button
                     variant="link" 
-                    className="text-xs text-lingo-purple p-0 h-auto"
+                    className="text-xs text-primary p-0 h-auto"
                     type="button"
                     onClick={() => console.log("Forgot password")}
                   >
@@ -59,7 +59,7 @@ export default function Login() {
                 Don't have an account?{" "}
                 <Button 
                   variant="link" 
-                  className="p-0 h-auto text-lingo-purple"
+                  className="p-0 h-auto text-primary"
                   type="button"
                   href="/signup"
                 >

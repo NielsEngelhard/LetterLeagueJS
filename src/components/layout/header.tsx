@@ -1,14 +1,13 @@
-"use client"
-
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from "@/components/ui/button";
-import { usePathname } from 'next/navigation';
 import Logo from './logo';
 import Link from 'next/link';
-import { Signature, UserPlus } from 'lucide-react';
+import { UserPlus } from 'lucide-react';
+import { getCurrentUser } from '@/features/auth/current-user';
+import HeaderNavItem from './headerNavItem';
 
-const Header: React.FC = () => {
-  const pathname = usePathname();
+const Header = async () => {
+  const user = await getCurrentUser();
 
   return (
     <header className="w-full py-4 px-6 flex items-center justify-between">
@@ -17,34 +16,15 @@ const Header: React.FC = () => {
       </Link>
       
       <nav className="hidden md:flex space-x-6">
-        <Button 
-          href='/'
-          variant={pathname == "/" ? "default" : "ghost"}
-          className="text-base">
-            Home
-        </Button>        
-        <Button 
-          href='/play/solo'
-          variant={pathname.includes("/solo") ? "default" : "ghost"}
-          className="text-base">
-            Solo
-        </Button>
-        <Button 
-          href='/play/multiplayer'
-          variant={pathname.includes("/multiplayer") ? "default" : "ghost"}
-          className="text-base">
-            Multiplayer
-        </Button>                
-        <Button 
-          href="/rules"
-          variant={pathname.includes("/rules") ? "default" : "ghost"}
-          className="text-base">
-            Rules
-        </Button>
+        <HeaderNavItem href="/" text="Home" />       
+        <HeaderNavItem href="/play/solo" text="Solo" />       
+        <HeaderNavItem href="/play/multiplayer" text="Multiplayer" />       
+        <HeaderNavItem href="/rules" text="Rules" />       
       </nav>
 
+      {!user ? (
       <div className='flex flex-row gap-2'>
-        <Button 
+        {/* <Button 
           href="/login"
           variant="ghost"
           className="text-base">
@@ -55,15 +35,18 @@ const Header: React.FC = () => {
           variant="default"
           className="text-base">
              <UserPlus></UserPlus> Sign Up
-        </Button>        
-      </div>
+        </Button>         */}
+      </div>        
+      ) : (
+        <div>lol</div>
+      ) }
       
-      <Button 
+      {/* <Button 
         variant="outline" 
         className="md:hidden"
         onClick={() => console.log("Open mobile menu")}>
         Menu
-      </Button>
+      </Button> */}
     </header>
   );
 };

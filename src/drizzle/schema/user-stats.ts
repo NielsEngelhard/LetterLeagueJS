@@ -1,11 +1,13 @@
-import { pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
+import { numeric, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
 import { UsersTable } from "./users";
 import { relations } from "drizzle-orm";
 
 export const UserStatsTable = pgTable("user_stats", {
     id: uuid().primaryKey().references(() => UsersTable.id, { onDelete: "cascade" }),
-    name: text().notNull(),
-    email: text().notNull(),
+    soloGamesPlayed: numeric().notNull(),
+    multiplayerGamesPlayed: numeric().notNull(),
+    wordOfTheDaysPlayed: numeric().notNull(),
+    wordOfTheDayWins: numeric().notNull(),    
     lastGamePlayed: timestamp(),
   });
 

@@ -1,32 +1,42 @@
 import { hashPassword } from "@/features/auth/password-hasher";
-import { db } from "../db";
 import { GlobalStatsTable, UsersTable } from "../schema";
 import { drizzle } from "drizzle-orm/node-postgres";
-import { eq } from "drizzle-orm";
 
 async function seed() {
     console.log('🌱 Seeding database...');
 
-      const db = drizzle("poepstoep");
-
-      var lol = await db.select().from(GlobalStatsTable).where(eq(GlobalStatsTable.id, 1));
-      console.log(lol);
+    const db = drizzle("postgresql://postgres:kaas@localhost:5432/letterleague");
 
     try {
 
-
-
       // UsersTable seeds
-      // const salt = 'ThisPasswordIsNotOnProductionHaha(IHope)';
-      // const userPassword = hashPassword('kaas', salt);
-      // await db.insert(UsersTable).values([
-      //   { id: 1, name: 'NielsKaas', email: 'niels.engelhard@turingsolutions.nl', password: userPassword, salt: salt , role: 'admin' },
-      // ]);
+      const salt = 'ThisPasswordIsNotOnProductionHaha(IHope)';
+      const userPassword = await hashPassword('kaas', salt);
+
+      var user = {
+          username: 'NielsKaas',
+          email: 'niels.engelhard@turingsolutions.nl',
+          hashedPassword: userPassword,
+          salt: salt ,
+          role: 'admin',
+          level: 0,
+          colorHex: "#e73549",
+      }
+
+      await db.insert(UsersTable).values({
+          username: 'NielsKaas',
+          email: 'niels.engelhard@turingsolutions.nl',
+          hashedPassword: userPassword,
+          salt: salt ,
+          role: 'admin',
+          levels: 0,
+          colorHex: "#e73549",
+      });
 
       // // GlobalStats Seeds
-      // await db.insert(GlobalStatsTable).values([
-      //   { id: 1, totalUsers: 1, totalGamesPlayed: 2, totalWordsGuessed: 3  },
-      // ]);
+      await db.insert(GlobalStatsTable).values([
+        { id: 1, totalUsers: 1, totalGamesPlayed: 2, totalWordsGuessed: 3  },
+      ]);
 
 
       
@@ -36,6 +46,4 @@ async function seed() {
     }
   }
   
-seed().then(() => {
-  console.log("test");
-  });
+seed();

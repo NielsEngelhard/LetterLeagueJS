@@ -6,7 +6,7 @@ CREATE TABLE "users" (
 	"hashedPassword" text NOT NULL,
 	"salt" text NOT NULL,
 	"role" "user_role" NOT NULL,
-	"level" numeric DEFAULT 0 NOT NULL,
+	"levels" integer NOT NULL,
 	"colorHex" text,
 	"createdAt" timestamp with time zone DEFAULT now() NOT NULL
 );
@@ -22,8 +22,8 @@ CREATE TABLE "user_sessions" (
 CREATE TABLE "singleplayer_games" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"userHostId" uuid,
-	"currentRound" numeric,
-	"totalRounds" numeric,
+	"currentRound" integer,
+	"totalRounds" integer,
 	"createdAt" timestamp with time zone DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
@@ -53,7 +53,7 @@ CREATE TABLE "word_lists" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"name" text NOT NULL,
 	"allWordsAreEqualLength" boolean NOT NULL,
-	"totalWords" numeric NOT NULL,
+	"totalWords" integer NOT NULL,
 	"language" text NOT NULL,
 	"imageUrl" text,
 	"createdAt" timestamp with time zone DEFAULT now() NOT NULL

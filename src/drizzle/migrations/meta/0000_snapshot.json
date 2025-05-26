@@ -1,5 +1,5 @@
 {
-  "id": "8a1d6a4f-07e3-40b0-83a8-3f6df6d88e5a",
+  "id": "cefb10dd-457f-4bb0-84b2-d8d97443d3c7",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -46,12 +46,11 @@
           "primaryKey": false,
           "notNull": true
         },
-        "level": {
-          "name": "level",
-          "type": "numeric",
+        "levels": {
+          "name": "levels",
+          "type": "integer",
           "primaryKey": false,
-          "notNull": true,
-          "default": 0
+          "notNull": true
         },
         "colorHex": {
           "name": "colorHex",
@@ -154,13 +153,13 @@
         },
         "currentRound": {
           "name": "currentRound",
-          "type": "numeric",
+          "type": "integer",
           "primaryKey": false,
           "notNull": false
         },
         "totalRounds": {
           "name": "totalRounds",
-          "type": "numeric",
+          "type": "integer",
           "primaryKey": false,
           "notNull": false
         },
@@ -413,7 +412,7 @@
         },
         "totalWords": {
           "name": "totalWords",
-          "type": "numeric",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true
         },

@@ -14,7 +14,7 @@ export default function HeaderNavItem({text, href}: Props) {
     return (
         <Button 
           href={href}
-          variant={pathname.startsWith(href) ? "default" : "ghost"}
+          variant={(pathname.startsWith(href) && href != "/") || (href == "/" && pathname == "/") ? "default" : "ghost"}
           className="text-base">
             {text}
         </Button> 

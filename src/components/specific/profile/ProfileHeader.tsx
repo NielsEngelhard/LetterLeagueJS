@@ -21,7 +21,7 @@ export default function ProfileHeader({ user }: Props) {
           
           <div className="flex-1 text-center md:text-left">
             <div className="flex flex-col md:flex-row md:items-center md:gap-3">
-              <h2 className="text-xl font-semibold">{user.name}</h2>
+              <h2 className="text-xl font-semibold">{user.username}</h2>
               <div className="text-sm text-muted-foreground mb-1">@{user.username}</div>
             </div>
             <div className="flex items-center justify-center md:justify-start gap-2 mb-3 mt-1">
@@ -29,7 +29,7 @@ export default function ProfileHeader({ user }: Props) {
                 <Crown className="w-3 h-3 mr-1" /> Level {user.level}
               </Badge>
               <Badge variant="secondary">
-                {user.rank}
+                {user.level}
               </Badge>
             </div>
             <p className="text-sm text-muted-foreground">

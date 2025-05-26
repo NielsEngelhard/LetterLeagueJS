@@ -31,6 +31,8 @@
   --color-letter-correct: var(--letter-correct);
   --color-letter-wrong-position: var(--letter-wrong-position);
   --color-letter-incorrect: var(--letter-incorrect);
+
+  --color-error: var(--error);
 }
 
 :root {
@@ -56,6 +58,8 @@
   --letter-correct: #0d9488;
   --letter-wrong-position: #F59E0B;
   --letter-incorrect: #1E293B;  
+
+  --error: #dc0000;
 }
 
 .dark {
@@ -76,9 +80,12 @@
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.556 0 0);
+  
   --letter-correct: #0d9488;
   --letter-wrong-position: #F59E0B;
   --letter-incorrect: #1E293B;
+
+  --error: #dc0000;
 }
 
 @layer base {

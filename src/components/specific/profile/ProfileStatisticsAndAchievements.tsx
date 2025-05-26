@@ -17,22 +17,22 @@ export default function ProfileStatisticsAndAchievements({ user }: Props) {
                 Statistics
               </CardTitle>
             </CardHeader>
-            <CardContent className="grid grid-cols-2 gap-4">
+            <CardContent className="grid grid-cols-2 gap-4 text-center">
               <div className="flex flex-col items-center p-3 rounded-lg bg-card">
-                <span className="text-sm text-muted-foreground">Games Played</span>
-                <span className="text-2xl font-semibold text-foreground">{user.stats.gamesPlayed}</span>
+                <span className="text-sm text-muted-foreground">Multiplayer Games Played</span>
+                <span className="text-2xl font-semibold text-foreground">{user.stats?.multiplayerGamesPlayed}</span>
               </div>
               <div className="flex flex-col items-center p-3 rounded-lg bg-card">
-                <span className="text-sm text-muted-foreground">Win Rate</span>
-                <span className="text-2xl font-semibold text-letter-correct">{user.stats.winRate}</span>
+                <span className="text-sm text-muted-foreground">Word of the Days Guessed</span>
+                <span className="text-2xl font-semibold text-letter-correct">{user.stats?.wordOfTheDayWins}</span>
               </div>
               <div className="flex flex-col items-center p-3 rounded-lg bg-card">
-                <span className="text-sm text-muted-foreground">Longest Win Streak</span>
-                <span className="text-2xl font-semibold text-primary">{user.stats.longestStreak}</span>
+                <span className="text-sm text-muted-foreground">Solo Games Played</span>
+                <span className="text-2xl font-semibold text-primary">{user.stats?.soloGamesPlayed}</span>
               </div>
               <div className="flex flex-col items-center p-3 rounded-lg bg-card">
-                <span className="text-sm text-muted-foreground">Favourite Word</span>
-                <span className="text-lg font-semibold text-letter-wrong-position">{user.stats.favoriteWord}</span>
+                <span className="text-sm text-muted-foreground">Last Game Played</span>
+                <span className="text-lg font-semibold text-letter-wrong-position">{user.stats?.lastGamePlayed}</span>
               </div>
             </CardContent>
           </Card>
@@ -46,7 +46,7 @@ export default function ProfileStatisticsAndAchievements({ user }: Props) {
             </CardHeader>
             <CardContent>
               <div className="space-y-2">
-                {user.badges.map((badge, index) => (
+                {user?.stats?.badges?.map((badge, index) => (
                   <div key={index} className="flex items-center p-2 rounded-lg bg-card">
                     <div className="h-6 w-6 rounded-full bg-primary/20 flex items-center justify-center mr-3">
                       <Star className="h-3 w-3 text-primary" />

@@ -8,8 +8,8 @@ export const signInSchema = z.object({
 
 export const signUpSchema = z.object({
     email: z.string().min(1, "Required"),
-    username: z.string().min(1, "Required"),
     password: z.string().min(1, "Required"),    
+    username: z.string().optional(),
 });
 
 export const sessionSchema = z.object({

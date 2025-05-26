@@ -7,7 +7,7 @@ import { db } from "@/drizzle/db";
 import { UsersTable } from "@/drizzle/schema";
 import { eq } from "drizzle-orm";
 import { hashPassword, generateSalt, comparePasswords } from "./password-hasher";
-import { generateRandomUsername } from "@/lib/username-generator";
+import { generateRandomColorHex, generateRandomUsername } from "@/lib/string-generators";
 import { createUserSession, removeUserFromSession } from "./session";
 import { cookies } from "next/headers";
 
@@ -48,19 +48,24 @@ export async function signUp(unsafeData: z.infer<typeof signUpSchema>): Promise<
 
     if (existingUserByEmail) return "Email address is already in use";
 
-    // Check if username is already in use
-    const existingUserByUsername = await db.select()
-        .from(UsersTable)
-        .where(eq(UsersTable.name, data.username))
-        .then(rows => rows[0]);
+    var username: string = generateRandomUsername();
+    if (data.username) {
+        // Check if username is already in use
+        const existingUserByUsername = await db.select()
+            .from(UsersTable)
+            .where(eq(UsersTable.username, data.username))
+            .then(rows => rows[0]);
 
-    if (existingUserByUsername) return "Username is already taken";
+        if (existingUserByUsername) return "Username is already taken";
+        
+        username = data.username;
+    }
     
     try {
         const salt = generateSalt();
         const hashedPassword = await hashPassword(data.password, salt);
     
-        const user = await createUser(data.email, hashedPassword, salt);        
+        const user = await createUser(data.email, hashedPassword, salt, username);        
         if (user == null) return "Unable to create account"; 
 
         await createUserSession({
@@ -82,15 +87,17 @@ export async function logOut() {
     redirect("/");
 }
 
-async function createUser(email: string, hashedPassword: string, salt: string) {
+async function createUser(email: string, hashedPassword: string, salt: string, username: string) {
     const user = await db
         .insert(UsersTable)
         .values({
-            name: generateRandomUsername(),
+            username: username,
+            colorHex: generateRandomColorHex(),
             email: email,
             hashedPassword: hashedPassword,
             salt: salt,           
-            role: "user" 
+            role: "user",
+            level: 0,            
         })
         .returning({ id: UsersTable.id });
 
@@ -102,7 +109,7 @@ async function findUserByEmailOrUsername(usernameOrEmail: string) {
   
     const users = usernameIsEmail
       ? await db.select().from(UsersTable).where(eq(UsersTable.email, usernameOrEmail))
-      : await db.select().from(UsersTable).where(eq(UsersTable.name, usernameOrEmail));
+      : await db.select().from(UsersTable).where(eq(UsersTable.username, usernameOrEmail));
   
     return users[0] ?? null;
   }

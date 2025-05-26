@@ -29,7 +29,7 @@ async function seed() {
           hashedPassword: userPassword,
           salt: salt ,
           role: 'admin',
-          levels: 0,
+          level: 0,
           colorHex: "#e73549",
       });
 

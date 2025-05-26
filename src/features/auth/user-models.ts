@@ -1,11 +1,16 @@
+interface UserAndSessionModel {
+    user: UserModel;
+    session: UserSessionModel;
+}
+
 interface UserModel {
     id: string;
     username: string;
     email: string;
     level: number;
-    joinDate: string;    
-    stats: UserStats;
-    colorHex: string;
+    colorHex?: string | null;
+    stats?: UserStats;
+    joinDate?: Date;
 }
 
 interface UserStats {
@@ -15,4 +20,8 @@ interface UserStats {
     wordOfTheDayWins: number;
     lastGamePlayed: string;
     badges: string[];
+}
+
+interface UserSessionModel {
+    sessionId: string;
 }

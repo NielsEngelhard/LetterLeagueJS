@@ -13,7 +13,7 @@ export const UsersTable = pgTable("users", {
     hashedPassword: text().notNull(),
     salt: text().notNull(),
     role: userRoleEnum().notNull(),
-    levels: integer().notNull(),
+    level: integer().notNull(),
     colorHex: text(),
     createdAt
 });

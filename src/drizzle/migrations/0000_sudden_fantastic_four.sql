@@ -6,7 +6,7 @@ CREATE TABLE "users" (
 	"hashedPassword" text NOT NULL,
 	"salt" text NOT NULL,
 	"role" "user_role" NOT NULL,
-	"levels" integer NOT NULL,
+	"level" integer NOT NULL,
 	"colorHex" text,
 	"createdAt" timestamp with time zone DEFAULT now() NOT NULL
 );

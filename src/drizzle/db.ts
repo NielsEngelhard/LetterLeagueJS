@@ -7,4 +7,4 @@ import * as schema from "./schema";
 //     DrizzleConfig
 // });
 
-export const db = drizzle(process.env.DATABASE_URL);
+export const db = drizzle(process.env.SECRET_DATABASE_CONNECTION_STRING);

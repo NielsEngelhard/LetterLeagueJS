@@ -1,5 +1,5 @@
 {
-  "id": "5481ada4-dc67-4abe-bf33-da3d80a3f6aa",
+  "id": "8a1d6a4f-07e3-40b0-83a8-3f6df6d88e5a",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -15,17 +15,11 @@
           "notNull": true,
           "default": "gen_random_uuid()"
         },
-        "name": {
-          "name": "name",
+        "username": {
+          "name": "username",
           "type": "text",
           "primaryKey": false,
           "notNull": true
-        },
-        "imageUrl": {
-          "name": "imageUrl",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
         },
         "email": {
           "name": "email",
@@ -51,6 +45,19 @@
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": true
+        },
+        "level": {
+          "name": "level",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true,
+          "default": 0
+        },
+        "colorHex": {
+          "name": "colorHex",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
         },
         "createdAt": {
           "name": "createdAt",
@@ -317,23 +324,46 @@
           "primaryKey": true,
           "notNull": true
         },
-        "name": {
-          "name": "name",
-          "type": "text",
+        "soloGamesPlayed": {
+          "name": "soloGamesPlayed",
+          "type": "integer",
           "primaryKey": false,
-          "notNull": true
+          "notNull": true,
+          "default": 0
         },
-        "email": {
-          "name": "email",
-          "type": "text",
+        "multiplayerGamesPlayed": {
+          "name": "multiplayerGamesPlayed",
+          "type": "integer",
           "primaryKey": false,
-          "notNull": true
+          "notNull": true,
+          "default": 0
+        },
+        "wordOfTheDaysPlayed": {
+          "name": "wordOfTheDaysPlayed",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "default": 0
+        },
+        "wordOfTheDayWins": {
+          "name": "wordOfTheDayWins",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "default": 0
         },
         "lastGamePlayed": {
           "name": "lastGamePlayed",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": false
+        },
+        "badges": {
+          "name": "badges",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'[]'::jsonb"
         }
       },
       "indexes": {},

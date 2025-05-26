@@ -1,4 +1,4 @@
-import { integer, json, numeric, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
+import { integer, jsonb, pgTable, timestamp, uuid } from "drizzle-orm/pg-core";
 import { UsersTable } from "./users";
 import { relations } from "drizzle-orm";
 
@@ -9,8 +9,8 @@ export const UserStatsTable = pgTable("user_stats", {
     wordOfTheDaysPlayed: integer().notNull().default(0),
     wordOfTheDayWins: integer().notNull().default(0),    
     lastGamePlayed: timestamp(),
-    badges: json<string[]>().notNull().default([]),
-  });``
+    badges: jsonb('badges').notNull().default([]),
+  });
 
 export const UserStatsRelations = relations(UserStatsTable, ({ one }) => ({
     user: one(UsersTable, {

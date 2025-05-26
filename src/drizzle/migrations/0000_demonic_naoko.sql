@@ -1,12 +1,13 @@
 CREATE TYPE "public"."user_role" AS ENUM('admin', 'user', 'guest');--> statement-breakpoint
 CREATE TABLE "users" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
-	"name" text NOT NULL,
-	"imageUrl" text,
+	"username" text NOT NULL,
 	"email" text NOT NULL,
 	"hashedPassword" text NOT NULL,
 	"salt" text NOT NULL,
 	"role" "user_role" NOT NULL,
+	"level" numeric DEFAULT 0 NOT NULL,
+	"colorHex" text,
 	"createdAt" timestamp with time zone DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
@@ -40,9 +41,12 @@ CREATE TABLE "user_singleplayergames" (
 --> statement-breakpoint
 CREATE TABLE "user_stats" (
 	"id" uuid PRIMARY KEY NOT NULL,
-	"name" text NOT NULL,
-	"email" text NOT NULL,
-	"lastGamePlayed" timestamp
+	"soloGamesPlayed" integer DEFAULT 0 NOT NULL,
+	"multiplayerGamesPlayed" integer DEFAULT 0 NOT NULL,
+	"wordOfTheDaysPlayed" integer DEFAULT 0 NOT NULL,
+	"wordOfTheDayWins" integer DEFAULT 0 NOT NULL,
+	"lastGamePlayed" timestamp,
+	"badges" jsonb DEFAULT '[]'::jsonb NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE "word_lists" (

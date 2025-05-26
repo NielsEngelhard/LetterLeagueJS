@@ -14,6 +14,8 @@ import { cookies } from "next/headers";
 export async function signIn(unsafeData: z.infer<typeof signInSchema>) {
     const { success, data } = signInSchema.safeParse(unsafeData);
     if (!success) return "Login failed";
+
+    console.log("splitjesasdsadasd: ");
     
     const user = await findUserByEmailOrUsername(data.username);
 
@@ -25,6 +27,8 @@ export async function signIn(unsafeData: z.infer<typeof signInSchema>) {
         salt: user.salt,
         password: data.password
     });
+
+    console.log("splitjes: " + isCorrectPassword);
 
     if (!isCorrectPassword) return "Username/password combination does not match";
 

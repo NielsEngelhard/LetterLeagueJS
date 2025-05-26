@@ -2,7 +2,6 @@ import { z } from "zod";
 import crypto from "crypto";
 import { db } from "@/drizzle/db";
 import { UserSessionTable } from "@/drizzle/schema/user-session";
-import { userRoles } from "@/drizzle/schema/enum/user-role";
 import { and, eq, gt } from "drizzle-orm";
 import { UsersTable } from "@/drizzle/schema";
 import { sessionSchema } from "./schemas";

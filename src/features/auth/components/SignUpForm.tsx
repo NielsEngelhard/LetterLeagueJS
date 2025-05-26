@@ -38,13 +38,13 @@ export default function SignUpForm() {
         setError(error);
     }    
 
-function checkPasswordsMatch(password: string, verifyPassword: string) {
-    if (password === verifyPassword) {
-        setPasswordsMatch(true);
-    } else {
-        setPasswordsMatch(false);
+    function checkPasswordsMatch(password: string, verifyPassword: string) {
+        if (password === verifyPassword) {
+            setPasswordsMatch(true);
+        } else {
+            setPasswordsMatch(false);
+        }
     }
-}
 
     return (
         <Form {...form}>

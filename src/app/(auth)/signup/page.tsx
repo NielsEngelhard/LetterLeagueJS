@@ -1,18 +1,11 @@
 "use client";
 
 import Card from "@/components/ui/card/card";
-import { CardHeader, CardTitle, CardContent, CardDescription } from "@/components/ui/card/cardContent";
+import { CardHeader, CardTitle, CardDescription } from "@/components/ui/card/cardContent";
 import CenterContent from "@/components/layout/centerContent";
-import { useState } from "react";
 import SignUpForm from "@/features/auth/components/SignUpForm";
 
-function handleSignup() {
-    console.log("Sign up clicked");
-} 
-
 export default function Login() {
-    const [acceptedTerms, setAcceptedTerms] = useState(false);
-
     return (
         <CenterContent>
             <Card className="w-full lg:w-[600px]">

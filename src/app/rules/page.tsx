@@ -9,7 +9,7 @@ const Rules: React.FC = () => {
       <PageTitle title='How to Play' subText='Learn the rules'></PageTitle>
       
       <Card>
-        <h2 className="text-2xl font-fraktur mb-6">Game Rules</h2>
+        <h2 className="text-2xl font-special mb-6">Game Rules</h2>
         
         <div className="space-y-6">
           <div>

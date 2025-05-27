@@ -6,7 +6,7 @@ type Props = {
 
 export default function ErrorText({ children }: Props) {
     return (
-        <div className="text-error font-bold">
+        <div className="text-error font-bold text-sm">
             {children}
         </div>
     )

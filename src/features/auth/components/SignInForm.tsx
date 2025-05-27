@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Form, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { signInSchema } from "../schemas";
 import { z } from "zod";
 import { signIn } from "../actions";
@@ -51,18 +51,19 @@ export default function SignInForm() {
                         Forgot password?
                         </Button>
                     </div>
-                    <Input
-                        {...register("password")}
-                        id="password"
-                        type="password"
-                        placeholder="************" 
-                        fieldError={errors.username}
-                     />
+                    <div>
+                        <Input
+                            {...register("password")}
+                            id="password"
+                            type="password"
+                            placeholder="************" 
+                            fieldError={errors.username}
+                        />                        
+                        {serverError && <ErrorText>{serverError}</ErrorText>}
+                    </div>
                 </div>
             </CardContent>
-            <CardFooter className="flex flex-col space-y-4">
-                
-                {serverError && <ErrorText>{serverError}</ErrorText>}
+            <CardFooter className="flex flex-col space-y-4">                            
                 <Button type="submit" className="w-full" size="sm" disabled={isSubmitting}>Log In</Button>
 
                 <div className="text-center text-sm"> Don't have an account?{" "}

@@ -11,13 +11,19 @@ import { generateRandomColorHex, generateRandomUsername } from "@/lib/string-gen
 import { createUserSession, removeUserFromSession } from "./session";
 import { cookies } from "next/headers";
 
-export async function signIn(unsafeData: z.infer<typeof signInSchema>) {
+type SignInResponse = {
+    ok: boolean;
+    user?: UserModel;
+    errorMsg?: string;
+}
+
+export async function signIn(unsafeData: z.infer<typeof signInSchema>): Promise<SignInResponse> {
     const { success, data } = signInSchema.safeParse(unsafeData);
-    if (!success) return "Login failed";
+    if (!success) return SignInResponseFactory.error("Invalid login data");
     
     const user = await findUserByEmailOrUsername(data.username);
 
-    if (user == null) return "Username/password combination does not match";
+    if (user == null) return SignInResponseFactory.error();
 
 
     const isCorrectPassword = await comparePasswords({
@@ -26,9 +32,8 @@ export async function signIn(unsafeData: z.infer<typeof signInSchema>) {
         password: data.password
     });
 
-    console.log("splitjes: " + isCorrectPassword);
 
-    if (!isCorrectPassword) return "Username/password combination does not match";
+    if (!isCorrectPassword) return SignInResponseFactory.error();
 
     await createUserSession({
         userId: user.id,
@@ -36,7 +41,7 @@ export async function signIn(unsafeData: z.infer<typeof signInSchema>) {
         sessionId: ""
     }, await cookies());
 
-    redirect("/play");
+    return SignInResponseFactory.success(user);
 }
 
 export async function signUp(unsafeData: z.infer<typeof signUpSchema>): Promise<string> {
@@ -115,3 +120,21 @@ async function findUserByEmailOrUsername(usernameOrEmail: string) {
   
     return users[0] ?? null;
   }
+
+class SignInResponseFactory {
+    static success(user: UserModel): SignInResponse {
+        return {
+            ok: true,
+            user: user,
+        };
+    }
+
+    static error(errorMsg?: string): SignInResponse {
+        if (!errorMsg) errorMsg = "Username/password combination does not match";
+        
+        return {
+            ok: false,
+            errorMsg: errorMsg,
+        };
+    }
+}

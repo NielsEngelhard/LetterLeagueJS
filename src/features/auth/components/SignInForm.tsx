@@ -1,17 +1,20 @@
+"use client";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { signInSchema } from "../schemas";
 import { z } from "zod";
-import { signIn } from "../actions";
 import { CardContent, CardFooter } from "@/components/ui/card/cardContent";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import ErrorText from "@/components/ui/errorText";
+import { useAuth } from "../auth-context";
 
 
 export default function SignInForm() {
+    const { login } = useAuth();
     const [serverError, setServerError] = useState<string>();
 
     const {register, handleSubmit, formState: { errors, isSubmitting } } = useForm<z.infer<typeof signInSchema>>({
@@ -23,9 +26,7 @@ export default function SignInForm() {
     });
 
     async function onSubmit(data: z.infer<typeof signInSchema>) {
-        console.log("pripraproe");
-
-        const responseError = await signIn(data);
+        const responseError = await login(data);
         setServerError(responseError);
     }  
 

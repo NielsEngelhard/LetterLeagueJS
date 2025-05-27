@@ -4,6 +4,7 @@ import localFont from 'next/font/local'
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { Providers } from "@/components/layout/Providers";
 
 const specialFont = localFont({
   src: '../../public/fonts/special.otf',
@@ -33,19 +34,21 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`text-foreground ${geistSans.variable} ${geistMono.variable} ${specialFont.variable} antialiased dark`}>
-        
-        <Header></Header>
+        <Providers>
+          
+          <Header></Header>
 
-        <div className="min-h-screen flex flex-col">
-          <main className="flex-1 py-8 px-6">
-            <div className="max-w-4xl mx-auto">
-              {children}
-            </div>
-          </main>
-        </div>        
+          <div className="min-h-screen flex flex-col">
+            <main className="flex-1 py-8 px-6">
+              <div className="max-w-4xl mx-auto">
+                {children}
+              </div>
+            </main>
+          </div>        
 
-        <Footer></Footer>
+          <Footer></Footer>
 
+        </Providers>
       </body>
     </html>
   );

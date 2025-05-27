@@ -1,13 +1,15 @@
+"use client";
+
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import Logo from './logo';
 import Link from 'next/link';
 import { User, UserPlus } from 'lucide-react';
-import { getCurrentUser } from '@/features/auth/current-user';
 import HeaderNavItem from './headerNavItem';
+import { useAuth } from '@/features/auth/auth-context';
 
-const Header = async () => {
-  const user = await getCurrentUser();
+const Header = () => {
+  const { isLoggedIn, user } = useAuth();
 
   return (
     <header className="w-full py-4 px-6 flex items-center justify-between">
@@ -22,7 +24,7 @@ const Header = async () => {
         <HeaderNavItem href="/rules" text="Rules" />       
       </nav>
 
-      {!user ? (
+      {!isLoggedIn ? (
       <div className='flex flex-row gap-2'>
         <Button 
           href="/login"
@@ -42,7 +44,7 @@ const Header = async () => {
           href="/profile"
           variant="default"
           className="text-base">
-             <User></User> lols
+             <User></User> {user?.username}
         </Button>    
       ) }
       

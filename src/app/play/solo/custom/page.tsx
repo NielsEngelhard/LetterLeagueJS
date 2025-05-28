@@ -21,7 +21,7 @@ export default function SoloCustomGameSetup() {
         }
     });
 
-    function onSubmit() {
+    function onstartGame(data: CreateGameSchema) {
         console.log("TODO");
     }
 
@@ -33,8 +33,12 @@ export default function SoloCustomGameSetup() {
         <div>
             <PageTitle title="Custom Solo Game"></PageTitle>
             <FormProvider {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)}>
-                    <GameSettingsBase onBackClick={onBackClick}></GameSettingsBase>
+                <form onSubmit={form.handleSubmit(onstartGame)}>
+                    <GameSettingsBase
+                        isSubmitting={form.formState.isSubmitting}
+                        onBackClick={onBackClick}>
+
+                    </GameSettingsBase>
                 </form>                
             </FormProvider>
         </div>

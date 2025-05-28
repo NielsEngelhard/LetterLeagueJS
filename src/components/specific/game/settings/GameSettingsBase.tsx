@@ -10,14 +10,11 @@ import GameVisibilitySettings from './GameVisibilitySettings';
 import { ArrowLeft } from 'lucide-react';
 
 interface GameSettingsProps {
-    onBackClick?: () => void;
+  onBackClick?: () => void;
+  isSubmitting?: boolean;
 }
 
-const GameSettingsBase: React.FC<GameSettingsProps> = ({ onBackClick }: GameSettingsProps) => {
-  
-  const handleStartGame = () => {
-    console.log("handle start game");
-  };
+const GameSettingsBase: React.FC<GameSettingsProps> = ({ onBackClick, isSubmitting }: GameSettingsProps) => {
 
   return (
     <div className=''>
@@ -41,7 +38,7 @@ const GameSettingsBase: React.FC<GameSettingsProps> = ({ onBackClick }: GameSett
 
             {/* Submit btn */}
             <div className='absolute left-1/2 -translate-x-1/2'>
-              <Button className='w-full' size="lg" onClick={handleStartGame}>Start Game</Button>
+              <Button className='w-full' size="lg" disabled={isSubmitting}>Start Game</Button>
             </div>
         </div>
     </div>

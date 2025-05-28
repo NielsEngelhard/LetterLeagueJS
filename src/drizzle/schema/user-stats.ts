@@ -9,7 +9,7 @@ export const UserStatsTable = pgTable("user_stats", {
     wordOfTheDaysPlayed: integer().notNull().default(0),
     wordOfTheDayWins: integer().notNull().default(0),    
     lastGamePlayed: timestamp(),
-    badges: jsonb('badges').notNull().default([]),
+    badges: jsonb('badges').$type<string[]>().notNull().default([]),
   });
 
 export const UserStatsRelations = relations(UserStatsTable, ({ one }) => ({

@@ -1,7 +1,7 @@
 import { integer, pgTable, text } from "drizzle-orm/pg-core";
 import { createdAt, id } from "../schema-helpers";
 import { relations } from "drizzle-orm";
-import { SinglePlayerGamesTable } from "./single-player-game";
+import { SoloGamesTable } from "./solo-games";
 import { UserSessionTable } from "./user-session";
 import { UserStatsTable } from "./user-stats";
 import { userRoleEnum } from "./enum/user-role";
@@ -19,7 +19,7 @@ export const UsersTable = pgTable("users", {
 });
 
 export const UserRelationships = relations(UsersTable, ({ many, one }) => ({
-    userSinglePlayerGames: many(SinglePlayerGamesTable),
+    userSinglePlayerGames: many(SoloGamesTable),
 
     session: one(UserSessionTable, {
         fields: [UsersTable.id],

@@ -2,8 +2,6 @@
 
 import React from 'react';
 import { Button } from "@/components/ui/button";
-import { GameMode, GameVisibility } from '@/lib/game-constants';
-import { useRouter } from 'next/navigation';
 import WordLengthSettings from './WordLengthSettings';
 import MaxAttemptSettings from './MaxAttemptSettings';
 import TimePerTurnSettings from './TimePerTurnSettings';
@@ -12,43 +10,33 @@ import GameVisibilitySettings from './GameVisibilitySettings';
 import { ArrowLeft } from 'lucide-react';
 
 interface GameSettingsProps {
-    mode: GameMode;
-    visibility?: GameVisibility;
+    onBackClick?: () => void;
 }
 
-const GameSettings: React.FC<GameSettingsProps> = ({mode, visibility = GameVisibility.Private }: GameSettingsProps) => {
-  const router = useRouter();
-
+const GameSettingsBase: React.FC<GameSettingsProps> = ({ onBackClick }: GameSettingsProps) => {
+  
   const handleStartGame = () => {
     console.log("handle start game");
   };
-
-  function handleBackClicked() {
-    if (mode == GameMode.MultiplayerCustom) {
-      router.push('/play/multiplayer')
-    } else {
-      router.push('/play/solo')
-    }
-  }
 
   return (
     <div className=''>
         
         <Card className='flex flex-col gap-6'>
-            <WordLengthSettings></WordLengthSettings>
+            <WordLengthSettings name='wordLength'></WordLengthSettings>
         
-            <MaxAttemptSettings></MaxAttemptSettings>
+            <MaxAttemptSettings name='maxAttempts'></MaxAttemptSettings>
 
-            <TimePerTurnSettings></TimePerTurnSettings>      
+            <TimePerTurnSettings name='timePerTurn'></TimePerTurnSettings>      
 
-            <GameVisibilitySettings></GameVisibilitySettings>      
+            <GameVisibilitySettings name='visibility'></GameVisibilitySettings>      
         </Card>
 
         <div className='flex items-center relative mt-6'>
             
             {/* Back btn */}
             <div className='mr-auto'>
-              <Button className='w-full' size="lg" variant="outline" onClick={handleBackClicked}><ArrowLeft/> Back</Button>
+              <Button className='w-full' size="lg" variant="outline" onClick={onBackClick}><ArrowLeft/> Back</Button>
             </div>
 
             {/* Submit btn */}
@@ -60,4 +48,4 @@ const GameSettings: React.FC<GameSettingsProps> = ({mode, visibility = GameVisib
   );
 };
 
-export default GameSettings;
+export default GameSettingsBase;

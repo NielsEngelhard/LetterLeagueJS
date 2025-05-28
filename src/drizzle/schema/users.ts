@@ -19,7 +19,7 @@ export const UsersTable = pgTable("users", {
 });
 
 export const UserRelationships = relations(UsersTable, ({ many, one }) => ({
-    userSinglePlayerGames: many(SoloGamesTable),
+    userSoloGames: many(SoloGamesTable),
 
     session: one(UserSessionTable, {
         fields: [UsersTable.id],

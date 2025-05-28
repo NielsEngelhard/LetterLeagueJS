@@ -3,7 +3,7 @@ import { UsersTable } from "./users";
 import { SoloGamesTable } from "./solo-games";
 import { relations } from "drizzle-orm";
 
-export const UserSinglePlayerGamesTable = pgTable("user_singleplayergames", {
+export const UserSoloGamesTable = pgTable("user_solo_games", {
     userId: uuid()
         .notNull()
         .references(() => UsersTable.id, { onDelete: "cascade"}),
@@ -13,15 +13,15 @@ export const UserSinglePlayerGamesTable = pgTable("user_singleplayergames", {
 },
 t => [primaryKey({ columns: [t.userId, t.soloGameId] })]);
 
-export const UserSinglePlayerGamesRelationships = relations(
-    UserSinglePlayerGamesTable,
+export const UserSoloGamesRelationships = relations(
+    UserSoloGamesTable,
     ({ one }) => ({
         user: one(UsersTable, {
-            fields: [UserSinglePlayerGamesTable.userId],
+            fields: [UserSoloGamesTable.userId],
             references: [UsersTable.id]
         }),
         soloGame: one(SoloGamesTable, {
-            fields: [UserSinglePlayerGamesTable.soloGameId],
+            fields: [UserSoloGamesTable.soloGameId],
             references: [SoloGamesTable.id]
         })        
     })

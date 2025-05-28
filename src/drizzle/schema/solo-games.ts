@@ -8,7 +8,7 @@ export type SoloGameWord = {
     word: string;
 }
 
-export const SoloGamesTable = pgTable("singleplayer_games", {
+export const SoloGamesTable = pgTable("solo_games", {
     id,
     userHostId: uuid().references(() => UsersTable.id),
     currentRound: integer(),
@@ -18,6 +18,6 @@ export const SoloGamesTable = pgTable("singleplayer_games", {
     createdAt
 });
 
-export const SinglePlayerGameRelationships = relations(SoloGamesTable, ({ many }) => ({
-    userSinglePlayerGames: many(UsersTable)
+export const SoloGameRelationships = relations(SoloGamesTable, ({ many }) => ({
+    userSoloGames: many(UsersTable)
 }));

@@ -3,7 +3,9 @@
 import PageTitle from "@/components/layout/pageTitle";
 import GameSettingsBase from "@/components/specific/game/settings/GameSettingsBase";
 import { CreateGameSchema, createGameSchema } from "@/features/game/general-schemas";
+import { StartCustomSoloGame } from "@/features/game/solo/custom/actions";
 import { GameVisibility } from "@/lib/game-constants";
+import { serverCall } from "@/lib/server-call-helper";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from 'next/navigation';
 import { FormProvider, useForm } from "react-hook-form";
@@ -22,8 +24,11 @@ export default function SoloCustomGameSetup() {
         }
     });
 
-    function onstartGame(data: CreateGameSchema) {
-        console.log("TODO");
+    async function onSubmit(data: CreateGameSchema) {
+        serverCall(async () => {
+            var gameId = await StartCustomSoloGame(data);
+            router.push(`/play/solo/game?id=${gameId}`);
+        }, form);
     }
 
     function onBackClick() {
@@ -34,7 +39,7 @@ export default function SoloCustomGameSetup() {
         <div>
             <PageTitle title="Custom Solo Game"></PageTitle>
             <FormProvider {...form}>
-                <form onSubmit={form.handleSubmit(onstartGame)}>
+                <form onSubmit={form.handleSubmit(onSubmit)}>
                     <GameSettingsBase
                         isSubmitting={form.formState.isSubmitting}
                         onBackClick={onBackClick}>

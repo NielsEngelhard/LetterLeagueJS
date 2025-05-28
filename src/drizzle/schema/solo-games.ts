@@ -1,10 +1,10 @@
-import { pgTable, uuid, integer, jsonb } from "drizzle-orm/pg-core";
+import { pgTable, uuid, integer, jsonb, text } from "drizzle-orm/pg-core";
 import { createdAt, id } from "../schema-helpers";
 import { UsersTable } from "./users";
 import { relations } from "drizzle-orm";
 
 export type SoloGameWord = {
-    position: number;
+    round: number;
     word: string;
 }
 
@@ -14,6 +14,7 @@ export const SoloGamesTable = pgTable("solo_games", {
     currentRound: integer(),
     totalRounds: integer(),
     timePerTurn: integer(),
+    maxAttemptsPerRound: integer(),
     words: jsonb('words').$type<SoloGameWord[]>().notNull().default([]),
     createdAt
 });

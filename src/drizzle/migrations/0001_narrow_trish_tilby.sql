@@ -1,0 +1,1 @@
+ALTER TABLE "solo_games" ADD COLUMN "maxAttemptsPerRound" integer;

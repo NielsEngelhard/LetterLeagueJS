@@ -33,7 +33,7 @@ export default function SelectCardGrid({name, options, title, valueIndicator, Ic
             <Controller control={control} name={name} render={({ field }) => (
                 <div className="grid gap-2" style={{ gridTemplateColumns: `repeat(${options.length}, minmax(0, 1fr))` }}>
                     {options.map((option, index) => (
-                        <Card key={index} variant="clickableOption" active={option.value == value ? 'clickableOptionActive' : 'none'} onClick={() => field.onChange(option.value)}>
+                        <Card key={index} variant={option.value == value ? 'optionActive' : 'option'} onClick={() => field.onChange(option.value)}>
                             <div className="flex flex-row justify-center items-center text-center">
                                 {Icon && <Icon className="w-4 h-4 text-text mr-1" />}
                                 {option.label}

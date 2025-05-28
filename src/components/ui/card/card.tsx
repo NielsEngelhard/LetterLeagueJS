@@ -9,13 +9,9 @@ const cardVariants = cva(
     variants: {
       variant: {
         default: "bg-card text-card-foreground p-6",
-        clickableOption: "rounded-none border-1 border- p-2 text-center font-bold text-md cursor-pointer transition-all hover:border-primary",
-        clickableOptionMuted: "text-center border-1 border-muted p-2 text-muted-foreground rounded-none font-medium cursor-pointer",
-      },
-      active: {
-        none: "",
-        clickableOptionActive: "border-primary bg-primary/10",
-        clickableOptionMutedActive: "text-primary bg-primary/10"
+        option: "rounded-none border-1 border-primary/20 p-2 text-center font-bold text-md cursor-pointer transition-all hover:border-primary",
+        optionActive: "rounded-none border-1 border- p-2 text-center font-bold text-md cursor-pointer transition-all hover:border-primary border-primary bg-primary/10",
+        optionMuted: "text-center border-1 border-muted p-2 text-muted-foreground rounded-none font-medium cursor-pointer",
       }
     },
   }
@@ -33,7 +29,6 @@ export default function Card({
   children, 
   className, 
   variant = "default", 
-  active = "none",
   centerContent = false,
   growOnHover = false,
   onClick
@@ -47,7 +42,7 @@ export default function Card({
     <div 
       onClick={onCardClick}
       className={cn(
-        cardVariants({ variant, active }), 
+        cardVariants({ variant }), 
         centerContent && "justify-center items-center text-center", 
         growOnHover && "transform transition-transform hover:scale-105",
         className

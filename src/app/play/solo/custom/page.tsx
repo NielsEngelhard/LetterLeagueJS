@@ -17,6 +17,7 @@ export default function SoloCustomGameSetup() {
             wordLength: 5,
             maxAttempts: 6,
             timePerTurn: 40,
+            totalRounds: 4,
             visibility: GameVisibility.Private
         }
     });

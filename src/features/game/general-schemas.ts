@@ -10,6 +10,9 @@ export const MAX_TOTAL_ATTEMPTS = 10;
 export const MIN_TURN_TIME = 10;
 export const MAX_TURN_TIME = 40;
 
+export const MIN_TOTAL_ROUNDS = 3;
+export const MAX_TOTAL_ROUNDS = 10;
+
 export const createGameSchema = z.object({
     wordLength: z.number()
         .min(MIN_WORD_LENGTH, `Min word length is ${MIN_WORD_LENGTH}`)
@@ -20,6 +23,9 @@ export const createGameSchema = z.object({
     timePerTurn: z.number()
         .min(MIN_TURN_TIME, `Min turn time is ${MIN_TURN_TIME}s`)
         .max(MAX_TURN_TIME, `Max turn time is ${MAX_TURN_TIME}s`),
+    totalRounds: z.number()
+        .min(MIN_TOTAL_ROUNDS, `Min total rounds is ${MIN_TOTAL_ROUNDS}s`)
+        .max(MAX_TOTAL_ROUNDS, `Max total rounds is ${MAX_TOTAL_ROUNDS}s`),        
     visibility: z.nativeEnum(GameVisibility).nullable().optional()
 });
 export type CreateGameSchema = z.infer<typeof createGameSchema>;

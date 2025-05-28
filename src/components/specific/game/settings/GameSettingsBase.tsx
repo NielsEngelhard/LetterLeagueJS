@@ -8,6 +8,7 @@ import TimePerTurnSettings from './TimePerTurnSettings';
 import Card from '@/components/ui/card/card';
 import GameVisibilitySettings from './GameVisibilitySettings';
 import { ArrowLeft } from 'lucide-react';
+import TotalRoundsSettings from './TotalRoundsSettings';
 
 interface GameSettingsProps {
   onBackClick?: () => void;
@@ -22,6 +23,8 @@ const GameSettingsBase: React.FC<GameSettingsProps> = ({ onBackClick, isSubmitti
         <Card className='flex flex-col gap-6'>
             <WordLengthSettings name='wordLength'></WordLengthSettings>
         
+            <TotalRoundsSettings name='totalRounds'></TotalRoundsSettings>
+
             <MaxAttemptSettings name='maxAttempts'></MaxAttemptSettings>
 
             <TimePerTurnSettings name='timePerTurn'></TimePerTurnSettings>      

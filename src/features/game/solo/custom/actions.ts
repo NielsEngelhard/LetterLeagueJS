@@ -13,7 +13,9 @@ export async function StartCustomSoloGame(input: CreateGameSchema) {
 
 async function createCustomSoloGameRecord(data: CreateGameSchema) {
     await db.insert(SoloGamesTable).values({
-
+        currentRound: 0,
+        timePerTurn: data.timePerTurn,
+        totalRounds: data.totalRounds,
     });
 }
 

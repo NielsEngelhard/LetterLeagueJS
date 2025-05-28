@@ -1,6 +1,6 @@
 "use client";
 
-import PickItemGrid from "@/components/shared/PickItemGrid";
+import SelectCardGrid from "@/components/form/SelectCardGrid";
 
 const wordLengthOptions = [3, 4, 5, 6, 7];
 
@@ -8,13 +8,20 @@ interface Props {
     name: string;
 }
 
+const mappedOptions = wordLengthOptions.map(o => {
+    return {
+        value: o,
+        label: o
+    }
+});
+
 export default function WordLengthSettings({ name }: Props) {
     return (
-        <PickItemGrid 
+        <SelectCardGrid 
             title="Word Length"
             valueIndicator="letters"
-            items={wordLengthOptions}
+            options={mappedOptions}
             name={name}>       
-        </PickItemGrid>
+        </SelectCardGrid>
     )
 }

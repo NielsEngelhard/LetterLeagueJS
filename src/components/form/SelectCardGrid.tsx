@@ -3,16 +3,21 @@
 import Card from "@/components/ui/card/card";
 import { Controller, useFormContext } from "react-hook-form";
 
+export type SelectOption = {
+    label: any;
+    value: any;
+}
+
 interface Props {
     name: string; // Field name for react-hook-form
-    items: any[];
+    options: SelectOption[];
     title?: string;
     valueIndicator?: string;
     Icon?: React.ElementType;
     valuePostfix?: string;
 }
 
-export default function PickItemGrid({name, items, title, valueIndicator, Icon, valuePostfix}: Props) {
+export default function SelectCardGrid({name, options, title, valueIndicator, Icon, valuePostfix}: Props) {
     const { control, watch } = useFormContext();
     const value = watch(name);
     
@@ -26,12 +31,12 @@ export default function PickItemGrid({name, items, title, valueIndicator, Icon, 
 
             {/* Options */}
             <Controller control={control} name={name} render={({ field }) => (
-                <div className="grid gap-2" style={{ gridTemplateColumns: `repeat(${items.length}, minmax(0, 1fr))` }}>
-                    {items.map((item, index) => (
-                        <Card key={index} variant="clickableOption" active={item == value ? 'clickableOptionActive' : 'none'} onClick={() => field.onChange(item)}>
+                <div className="grid gap-2" style={{ gridTemplateColumns: `repeat(${options.length}, minmax(0, 1fr))` }}>
+                    {options.map((option, index) => (
+                        <Card key={index} variant="clickableOption" active={option.value == value ? 'clickableOptionActive' : 'none'} onClick={() => field.onChange(option.value)}>
                             <div className="flex flex-row justify-center items-center text-center">
                                 {Icon && <Icon className="w-4 h-4 text-text mr-1" />}
-                                {item}
+                                {option.label}
                                 {valuePostfix && <div>{valuePostfix}</div>}
                             </div>
                         </Card>

@@ -1,6 +1,6 @@
 "use client";
 
-import PickItemGrid from "@/components/shared/PickItemGrid";
+import SelectCardGrid from "@/components/form/SelectCardGrid";
 
 const maxAttemptOptions = [4, 5, 6, 7];
 
@@ -8,13 +8,20 @@ interface Props {
     name: string;
 }
 
+const mappedOptions = maxAttemptOptions.map(o => {
+    return {
+        value: o,
+        label: o
+    }
+});
+
 export default function MaxAttemptSettings({ name }: Props) {
     return (
-        <PickItemGrid 
+        <SelectCardGrid 
             title="Max Attempts"
             valueIndicator="guesses"
-            items={maxAttemptOptions} 
+            options={mappedOptions} 
             name={name}>            
-        </PickItemGrid>
+        </SelectCardGrid>
     )
 }

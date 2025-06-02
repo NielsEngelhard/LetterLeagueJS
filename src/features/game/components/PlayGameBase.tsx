@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PlayerList from './PlayerList';
 import GameBoard from './GameBoard';
 import { InGamePlayer, PlayerGuess } from '../game-models';
+import GameSettings from './GameSettings';
 
 interface Props {
   currentWordLength: number;
@@ -25,7 +26,7 @@ export default function PlayGameBase({ totalRounds, totalTriesPerRound, players,
             <p className="text-muted-foreground">Round {currentRound} - Player's turn: {players.find(p => p.isCurrentTurn)?.name}</p>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
             {/* Player List */}
             <div className="lg:col-span-1">
               <PlayerList players={players} />
@@ -48,6 +49,11 @@ export default function PlayGameBase({ totalRounds, totalTriesPerRound, players,
                   <li>Each player has 6 attempts to guess the word</li>
                 </ul>
               </div>
+            </div>
+
+            {/* Settings */}
+            <div className="lg:col-span-1">
+              <GameSettings></GameSettings>              
             </div>
           </div>
         </div>

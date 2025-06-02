@@ -21,11 +21,14 @@ async function createCustomSoloGameRecord(data: CreateGameSchema): Promise<{ id:
         language: "nl" // TODO: support multi languages
     });
 
+    var userId = "TODO";
+
     var result = await db.insert(SoloGamesTable).values({
-        currentRound: 0,
+        currentRound: 1,
         timePerTurn: data.timePerTurn,
         totalRounds: data.totalRounds,
         maxAttemptsPerRound: data.maxAttempts,
+        userHostId: userId,
         words: mapWordsToSoloGameWords(words)
     }).returning({
         id: SoloGamesTable.id

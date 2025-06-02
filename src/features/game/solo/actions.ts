@@ -12,6 +12,13 @@ export async function GetSoloGame(gameId: string | null): Promise<SoloGame> {
     var result = await db.select().from(SoloGamesTable).where(eq(SoloGamesTable.id, gameId));
     var game = result[0];
 
+    var currentRound = game.currentRound;
+    var currentWord = game.words.find(w => w.round == currentRound)?.word;
+
+    console.log("yolo");
+
+    if (!currentWord) throw new Error(`Could not find the current word for round ${game.currentRound}/${game.totalRounds}`);
+
     return {
         id: game.id,
         currentRound: game.currentRound,
@@ -20,7 +27,11 @@ export async function GetSoloGame(gameId: string | null): Promise<SoloGame> {
         maxAttempts: game.maxAttemptsPerRound,
         timePerTurn: game.timePerTurn,
         totalRounds: game.totalRounds,
-        guesses: []
+        guesses: [],
+        hint: {
+            wordLength: currentWord.length,
+            startingLetter: currentWord.charAt(0)
+        }
     }
 }
 

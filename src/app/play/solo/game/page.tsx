@@ -4,7 +4,6 @@ import LoadingPage from "@/components/layout/LoadingPage";
 import PlayGameBase from "@/features/game/components/PlayGameBase";
 import { GetSoloGame } from "@/features/game/solo/actions";
 import { SoloGame } from "@/features/game/solo/solo-game-schemas";
-import { GameMode } from "@/lib/game-constants";
 import { useSearchParams } from "next/navigation"
 import { useEffect, useState } from "react";
 
@@ -29,16 +28,21 @@ export default function SoloGamePage() {
     }, [gameId]);
 
     return (
-        <LoadingPage isLoading={game == undefined} >
-            <PlayGameBase
-                gameMode={game!.gameMode}
-                totalRounds={10}
-                currentWordLength={6}
-                totalTriesPerRound={5}                
-                players={[ { id: "000", name: "lol", isCurrentTurn: true, score: 20, isCurrentPlayer: true },
-                    { id: "0001", name: "lols", isCurrentTurn: false, score: 22, isCurrentPlayer: false }
-                 ]}
-            />
-        </LoadingPage>
+        game
+        ?
+        <PlayGameBase
+            currentRound={game.currentRound}
+            totalRounds={game.totalRounds}            
+            currentWordLength={game.hint.wordLength}
+            startingLetter={game.hint.startingLetter}
+            totalTriesPerRound={game.timePerTurn}
+            initialGuesses={game.guesses}      
+            gameMode={game!.gameMode}
+            players={[ { id: "000", name: "lol", isCurrentTurn: true, score: 20, isCurrentPlayer: true },
+                { id: "0001", name: "lols", isCurrentTurn: false, score: 22, isCurrentPlayer: false }
+                ]}
+        />
+        :
+        <LoadingPage />
     )
 }

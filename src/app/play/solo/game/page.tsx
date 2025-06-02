@@ -1,14 +1,20 @@
 "use client"
 
+import PlayGameBase from "@/features/game/components/PlayGameBase";
 import { useSearchParams } from "next/navigation"
 
-export default async function SoloGamePage() {
+export default function SoloGamePage() {
     const searchParams = useSearchParams();
     const gameId = searchParams.get("id");
 
     return (
         <div>
-            lol {gameId}
+            <PlayGameBase
+                totalRounds={10}
+                currentWordLength={6}
+                totalTriesPerRound={5}                
+                players={[ { id: "000", name: "lol", isCurrentTurn: true, score: 20, isCurrentPlayer: true } ]}
+            />
         </div>
     )
 }

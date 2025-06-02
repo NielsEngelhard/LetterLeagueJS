@@ -1,14 +1,6 @@
 import React from 'react';
 import { User } from 'lucide-react';
 
-interface Player {
-  id: string;
-  name: string;
-  score: number;
-  isCurrentTurn: boolean;
-  isCurrentPlayer: boolean;
-}
-
 interface PlayerListProps {
   players: Player[];
 }

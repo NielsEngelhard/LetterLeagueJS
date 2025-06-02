@@ -1,11 +1,12 @@
+"use client"
+
 import React, { useState, useEffect } from 'react';
 import { cn } from "@/lib/utils";
-
-export type TileStatus = "correct" | "wrong-position" | "incorrect" | "idle" | "active";
+import { LetterStatus } from '@/features/words/letter-models';
 
 interface LetterTileProps {
   letter: string;
-  status: TileStatus;
+  status: LetterStatus;
   delay?: number;
 }
 
@@ -22,11 +23,11 @@ const LetterTile: React.FC<LetterTileProps> = ({ letter, status, delay = 0 }) =>
   }, [letter, delay]);
 
   const statusClasses = {
-    "correct": "letter-correct",
-    "wrong-position": "letter-wrong-position",
-    "incorrect": "letter-incorrect",
-    "idle": "letter-idle",
-    "active": "letter-active",
+    "correct": "bg-letter-correct",
+    "wrong-position": "bg-letter-wrong-position",
+    "incorrect": "bg-letter-incorrect",
+    "idle": "bg-letter-incorrect/50",
+    "active": "bg-letter-active",
   };
 
   return (

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import LetterTile from '@/components/ui/letterTile';
 import { APP_NAME } from '@/lib/global-constants';
+import LetterTile from '@/features/game/components/LetterTile';
 
 const Home: React.FC = () => {
 

@@ -1,46 +1,48 @@
 import React from 'react';
-import LetterTile, { TileStatus } from './LetterTile';
+import LetterTile from './LetterTile';
+import { ValidatedLetter } from '@/features/words/letter-models';
 
 interface WordRowProps {
-  word: string;
-  target: string;
-  isActive: boolean;
-  isSubmitted: boolean;
-  maxLength: number;
+  length: number;  
+  isActive?: boolean;
+  prefilledWord?: ValidatedLetter[];
 }
 
 const WordRow: React.FC<WordRowProps> = ({ 
-  word = "", 
-  target = "", 
-  isActive, 
-  isSubmitted, 
-  maxLength = 5 
+  length,  
+  prefilledWord,
+  isActive = false,
 }) => {
-  // Fill the word with empty spaces to match maxLength
-  const normalizedWord = word.padEnd(maxLength, " ");
-  const letters = normalizedWord.split("");
-  
-  // Calculate the status for each letter
-  const getLetterStatus = (letter: string, index: number): TileStatus => {
-    if (!letter.trim()) return "idle";
-    if (!isSubmitted) return isActive ? "active" : "idle";
+
+  function showEmptyRow() {
+    var emptyTiles = Array.from({ length });
     
-    // If submitted, determine correctness
-    if (letter === target[index]) return "correct";
-    if (target.includes(letter)) return "wrong-position";
-    return "incorrect";
-  };
-  
+    return emptyTiles.map((x) => {
+      return <LetterTile letter='' status='idle' />
+    });
+  }
+
+  function showPrefilledRow() {
+    return (
+      prefilledWord?.map((validatedLetter, index) => (
+        <LetterTile
+          key={`${index}-${validatedLetter.letter}`} 
+          letter={validatedLetter.letter}
+          status={validatedLetter.status}
+        />
+      ))
+    );
+  }
+
   return (
     <div className="flex gap-2 my-2 justify-center">
-      {letters.map((letter, index) => (
-        <LetterTile
-          key={`${index}-${letter}`} 
-          letter={letter}
-          status={getLetterStatus(letter, index)}
-          delay={isSubmitted ? index * 150 : 0}
-        />
-      ))}
+
+      {prefilledWord != undefined
+      ?
+        showPrefilledRow()
+      :
+        showEmptyRow()
+      }
     </div>
   );
 };

@@ -4,7 +4,7 @@ import LoadingPage from "@/components/layout/LoadingPage";
 import PlayGameBase from "@/features/game/components/PlayGameBase";
 import { GetSoloGame } from "@/features/game/solo/actions";
 import { SoloGame } from "@/features/game/solo/solo-game-schemas";
-import { serverCall } from "@/lib/server-call-helper";
+import { GameMode } from "@/lib/game-constants";
 import { useSearchParams } from "next/navigation"
 import { useEffect, useState } from "react";
 
@@ -31,6 +31,7 @@ export default function SoloGamePage() {
     return (
         <LoadingPage isLoading={game == undefined} >
             <PlayGameBase
+                gameMode={game!.gameMode}
                 totalRounds={10}
                 currentWordLength={6}
                 totalTriesPerRound={5}                

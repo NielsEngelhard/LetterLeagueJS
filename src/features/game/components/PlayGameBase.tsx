@@ -3,6 +3,8 @@ import PlayerList from './PlayerList';
 import GameBoard from './GameBoard';
 import { InGamePlayer, PlayerGuess } from '../game-models';
 import GameSettings from './GameSettings';
+import ActiveGameTitle from '@/components/specific/game/ActiveGameTitle';
+import { GameMode } from '@/lib/game-constants';
 
 interface Props {
   currentWordLength: number;
@@ -10,9 +12,10 @@ interface Props {
   totalTriesPerRound: number;
   players: InGamePlayer[];
   initialGuesses?: PlayerGuess[];
+  gameMode: GameMode;
 }
 
-export default function PlayGameBase({ totalRounds, totalTriesPerRound, players, currentWordLength, initialGuesses = [] }: Props) {
+export default function PlayGameBase({ totalRounds, totalTriesPerRound, players, currentWordLength, gameMode, initialGuesses = [] }: Props) {
   const [currentRound, setGameRound] = useState<number>(1);
   const [guesses, setGuesses] = useState<PlayerGuess[]>(initialGuesses);
   
@@ -22,7 +25,7 @@ export default function PlayGameBase({ totalRounds, totalTriesPerRound, players,
       <main className="flex-1 py-8 px-6">
         <div className="max-w-6xl mx-auto">
           <div className="mb-8 text-center">
-            <h1 className="font-special text-3xl md:text-4xl mb-2">Custom Solo Game</h1>
+            <ActiveGameTitle gameMode={gameMode}></ActiveGameTitle>
             <p className="text-muted-foreground">Round {currentRound} - Player's turn: {players.find(p => p.isCurrentTurn)?.name}</p>
           </div>
           

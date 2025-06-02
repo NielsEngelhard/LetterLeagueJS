@@ -1,3 +1,4 @@
+import { GameMode, GameVisibility } from "@/lib/game-constants";
 import { ValidatedLetter } from "../words/letter-models";
 
 export interface InGamePlayer {
@@ -12,4 +13,9 @@ export interface PlayerGuess {
     playerId: string;
     round: number;
     guess: ValidatedLetter[];
+}
+
+export interface RoundGuess {
+  roundNumber: number;
+  playerGuesses: PlayerGuess;
 }

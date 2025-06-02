@@ -1,14 +1,35 @@
 "use client"
 
+import LoadingPage from "@/components/layout/LoadingPage";
 import PlayGameBase from "@/features/game/components/PlayGameBase";
+import { GetSoloGame } from "@/features/game/solo/actions";
+import { SoloGame } from "@/features/game/solo/solo-game-schemas";
+import { serverCall } from "@/lib/server-call-helper";
 import { useSearchParams } from "next/navigation"
+import { useEffect, useState } from "react";
 
 export default function SoloGamePage() {
+    const [game, setGame] = useState<SoloGame>();
+
     const searchParams = useSearchParams();
     const gameId = searchParams.get("id");
 
+    const fetchGame = async () => {
+        try {
+            var response = await GetSoloGame(gameId);
+            setGame(response);                
+        } catch {
+
+        }
+    }
+
+    useEffect(() => {
+        if (!gameId) return;
+        fetchGame();
+    }, [gameId]);
+
     return (
-        <div>
+        <LoadingPage isLoading={game == undefined} >
             <PlayGameBase
                 totalRounds={10}
                 currentWordLength={6}
@@ -17,6 +38,6 @@ export default function SoloGamePage() {
                     { id: "0001", name: "lols", isCurrentTurn: false, score: 22, isCurrentPlayer: false }
                  ]}
             />
-        </div>
+        </LoadingPage>
     )
 }

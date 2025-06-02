@@ -19,8 +19,8 @@ const GameBoard: React.FC<GameBoardProps> = ({
   return (
     <Card>
 
-      {guesses.map((playerGuess) => (
-        <WordRow length={2} prefilledWord={playerGuess.guess} />
+      {guesses.map((playerGuess, i) => (
+        <WordRow key={`playerguess-${i}`} length={2} prefilledWord={playerGuess.guess} />
       ))}
 
       {/* // Fill in emty rows */}

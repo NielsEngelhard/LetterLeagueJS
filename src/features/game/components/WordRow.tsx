@@ -17,8 +17,8 @@ const WordRow: React.FC<WordRowProps> = ({
   function showEmptyRow() {
     var emptyTiles = Array.from({ length });
     
-    return emptyTiles.map((x) => {
-      return <LetterTile letter='' status='idle' />
+    return emptyTiles.map((x, i) => {
+      return <LetterTile key={`empty-tile-${i}`} letter='' status='idle' />
     });
   }
 

@@ -10,11 +10,11 @@ export type SoloGameWord = {
 
 export const SoloGamesTable = pgTable("solo_games", {
     id,
-    userHostId: uuid().references(() => UsersTable.id),
-    currentRound: integer(),
-    totalRounds: integer(),
-    timePerTurn: integer(),
-    maxAttemptsPerRound: integer(),
+    userHostId: uuid().references(() => UsersTable.id).notNull(),
+    currentRound: integer().notNull(),
+    totalRounds: integer().notNull(),
+    timePerTurn: integer().notNull(),
+    maxAttemptsPerRound: integer().notNull(),
     words: jsonb('words').$type<SoloGameWord[]>().notNull().default([]),
     createdAt
 });

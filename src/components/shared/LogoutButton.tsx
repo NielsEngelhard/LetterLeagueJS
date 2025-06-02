@@ -1,9 +1,13 @@
-import { logOut } from "@/features/auth/actions";
+"use client";
+
+import { useAuth } from "@/features/auth/auth-context";
 import { Button } from "../ui/button";
 
 export default function LogoutButton() {
-    async function onLogoutClick() {
-        await logOut();
+    const { logout } = useAuth();
+
+    function onLogoutClick() {
+        logout();
     }
 
     return (

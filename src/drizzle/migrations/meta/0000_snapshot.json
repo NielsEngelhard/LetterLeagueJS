@@ -1,5 +1,5 @@
 {
-  "id": "9c655c15-8523-42b7-ba3a-5198d25c12af",
+  "id": "6c1c3774-0b33-400c-bedc-6139e570ac12",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -149,25 +149,31 @@
           "name": "userHostId",
           "type": "uuid",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
         },
         "currentRound": {
           "name": "currentRound",
           "type": "integer",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
         },
         "totalRounds": {
           "name": "totalRounds",
           "type": "integer",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
         },
         "timePerTurn": {
           "name": "timePerTurn",
           "type": "integer",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
+        },
+        "maxAttemptsPerRound": {
+          "name": "maxAttemptsPerRound",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
         },
         "words": {
           "name": "words",

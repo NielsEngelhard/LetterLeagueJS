@@ -21,10 +21,11 @@ CREATE TABLE "user_sessions" (
 --> statement-breakpoint
 CREATE TABLE "solo_games" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
-	"userHostId" uuid,
-	"currentRound" integer,
-	"totalRounds" integer,
-	"timePerTurn" integer,
+	"userHostId" uuid NOT NULL,
+	"currentRound" integer NOT NULL,
+	"totalRounds" integer NOT NULL,
+	"timePerTurn" integer NOT NULL,
+	"maxAttemptsPerRound" integer NOT NULL,
 	"words" jsonb DEFAULT '[]'::jsonb NOT NULL,
 	"createdAt" timestamp with time zone DEFAULT now() NOT NULL
 );

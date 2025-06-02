@@ -13,7 +13,9 @@ export default function SoloGamePage() {
                 totalRounds={10}
                 currentWordLength={6}
                 totalTriesPerRound={5}                
-                players={[ { id: "000", name: "lol", isCurrentTurn: true, score: 20, isCurrentPlayer: true } ]}
+                players={[ { id: "000", name: "lol", isCurrentTurn: true, score: 20, isCurrentPlayer: true },
+                    { id: "0001", name: "lols", isCurrentTurn: false, score: 22, isCurrentPlayer: false }
+                 ]}
             />
         </div>
     )

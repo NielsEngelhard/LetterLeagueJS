@@ -1,14 +1,14 @@
 import PageTitle from '@/components/layout/pageTitle';
 import Card from '@/components/ui/card/card';
-import LetterTile from '@/components/ui/letterTile';
+import LetterTile from '@/features/game/components/LetterTile';
 import React from 'react';
 
 const Rules: React.FC = () => {
   return (
-    <div className='flex flex-col gap-4'>
+    <div className='flex flex-col gap-4 items-center'>
       <PageTitle title='How to Play' subText='Learn the rules'></PageTitle>
       
-      <Card>
+      <Card className='max-w-[700px]'>
         <h2 className="text-2xl font-special mb-6">Game Rules</h2>
         
         <div className="space-y-6">

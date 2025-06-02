@@ -27,19 +27,6 @@ const GameBoard: React.FC<GameBoardProps> = ({
       {Array.from({ length: totalEmptyRows }).map((_, index) => (
         <WordRow key={index} length={wordLength} />
       ))}
-
-
-      {/* <WordRow isActive={true} length={5} prefilledWord={[
-        { position: 1, letter: 'a', status: "correct" },
-        { position: 2, letter: 'b', status: "incorrect" },
-        { position: 3, letter: 'c', status: "wrong-position" },
-        { position: 4, letter: 'd', status: "correct" },
-        { position: 5, letter: 'e', status: "wrong-position" },
-      ]}></WordRow>
-      <WordRow isActive={true} length={5}></WordRow>
-      <WordRow isActive={true} length={5}></WordRow>
-      <WordRow isActive={true} length={5}></WordRow>
-      <WordRow isActive={true} length={5}></WordRow> */}
     </Card>
   );
 };

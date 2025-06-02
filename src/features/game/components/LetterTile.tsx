@@ -26,7 +26,7 @@ const LetterTile: React.FC<LetterTileProps> = ({ letter, status, delay = 0 }) =>
     "correct": "bg-letter-correct",
     "wrong-position": "bg-letter-wrong-position",
     "incorrect": "bg-letter-incorrect",
-    "idle": "bg-letter-incorrect/50",
+    "idle": "bg-letter-incorrect",
     "active": "bg-letter-active",
   };
 

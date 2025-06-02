@@ -21,7 +21,7 @@ export default function PlayGameBase({ totalRounds, totalTriesPerRound, players,
       <main className="flex-1 py-8 px-6">
         <div className="max-w-6xl mx-auto">
           <div className="mb-8 text-center">
-            <h1 className="font-fraktur text-3xl md:text-4xl mb-2">Game Room</h1>
+            <h1 className="font-special text-3xl md:text-4xl mb-2">Custom Solo Game</h1>
             <p className="text-muted-foreground">Round {currentRound} - Player's turn: {players.find(p => p.isCurrentTurn)?.name}</p>
           </div>
           

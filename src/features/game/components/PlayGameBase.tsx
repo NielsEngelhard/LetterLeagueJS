@@ -1,24 +1,23 @@
 import React, { useState } from 'react';
 import PlayerList from './PlayerList';
 import GameBoard from './GameBoard';
-import { Hint, InGamePlayer, PlayerGuess, RoundGuess } from '../game-models';
+import { InGamePlayer, RoundGuess, WordHint } from '../game-models';
 import GameSettings from './GameSettings';
 import ActiveGameTitle from '@/components/specific/game/ActiveGameTitle';
 import { GameMode } from '@/lib/game-constants';
 import QuickRules from './QuickRules';
 
 interface Props {
-  currentWordLength: number;
-  startingLetter: string;
   currentRound: number;
   totalRounds: number;
   totalTriesPerRound: number;
   players: InGamePlayer[];
   initialGuesses?: RoundGuess[];
   gameMode: GameMode;
+  hint: WordHint;
 }
 
-export default function PlayGameBase({ totalRounds, currentRound, totalTriesPerRound, players, currentWordLength, startingLetter, gameMode, initialGuesses = [] }: Props) {
+export default function PlayGameBase({ totalRounds, currentRound, totalTriesPerRound, players, hint, gameMode, initialGuesses = [] }: Props) {
   const [guesses, setGuesses] = useState<RoundGuess[]>(initialGuesses);
   
   return (
@@ -28,7 +27,7 @@ export default function PlayGameBase({ totalRounds, currentRound, totalTriesPerR
         <div className="max-w-6xl mx-auto">
           <div className="mb-8 text-center">
             <ActiveGameTitle gameMode={gameMode}></ActiveGameTitle>
-            <p className="text-muted-foreground">Round {currentRound}/{totalRounds} - Player's turn: {players.find(p => p.isCurrentTurn)?.name} | Starting letter '{startingLetter}'</p>
+            <p className="text-muted-foreground">Round {currentRound}/{totalRounds} - Player's turn: {players.find(p => p.isCurrentTurn)?.name} | Starting letter '{hint.startingLetter}'</p>
           </div>
           
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
@@ -42,7 +41,7 @@ export default function PlayGameBase({ totalRounds, currentRound, totalTriesPerR
                 <GameBoard
                   guesses={[]}
                   maxAttempts={totalTriesPerRound}
-                  wordLength={currentWordLength}                  
+                  hint={hint}            
                 />
               
               <QuickRules></QuickRules>

@@ -4,6 +4,7 @@ import { SoloGamesTable, SoloGameWord } from "@/drizzle/schema";
 import { createGameSchema, CreateGameSchema } from "../../general-schemas";
 import { db } from "@/drizzle/db";
 import { PickDefaultWords } from "@/features/words/default-words/actions";
+import { getCurrentUser } from "@/features/auth/current-user";
 
 export async function StartCustomSoloGame(input: CreateGameSchema): Promise<string> {
     const { success, data } = createGameSchema.safeParse(input);
@@ -21,7 +22,8 @@ async function createCustomSoloGameRecord(data: CreateGameSchema): Promise<{ id:
         language: "nl" // TODO: support multi languages
     });
 
-    var userId = "TODO";
+    var userId = (await getCurrentUser())?.user.id;
+    if (!userId) throw new Error("User seems not logged in");
 
     var result = await db.insert(SoloGamesTable).values({
         currentRound: 1,

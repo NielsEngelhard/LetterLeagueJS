@@ -4,21 +4,25 @@ import { ValidatedLetter } from '@/features/words/letter-models';
 
 interface WordRowProps {
   length: number;  
-  isActive?: boolean;
   prefilledWord?: ValidatedLetter[];
+  firstLetter?: string;
 }
 
 const WordRow: React.FC<WordRowProps> = ({ 
   length,  
   prefilledWord,
-  isActive = false,
+  firstLetter,
 }) => {
 
   function showEmptyRow() {
     var emptyTiles = Array.from({ length });
     
     return emptyTiles.map((x, i) => {
-      return <LetterTile key={`empty-tile-${i}`} letter='' status='idle' />
+      return <LetterTile
+              key={`empty-tile-${i}`}
+              status={(firstLetter && i==0) ? 'correct' : 'idle'}
+              letter={(firstLetter && i==0) ? firstLetter : ''}
+              />
     });
   }
 

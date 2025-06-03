@@ -19,7 +19,7 @@ export interface RoundGuess {
   playerGuesses: PlayerGuess;
 }
 
-export interface Hint {
+export interface WordHint {
   wordLength: number;
-  startingLetter: string;
+  startingLetter?: string;
 }

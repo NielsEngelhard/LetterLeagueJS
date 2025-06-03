@@ -33,11 +33,10 @@ export default function SoloGamePage() {
         <PlayGameBase
             currentRound={game.currentRound}
             totalRounds={game.totalRounds}            
-            currentWordLength={game.hint.wordLength}
-            startingLetter={game.hint.startingLetter}
-            totalTriesPerRound={game.timePerTurn}
+            totalTriesPerRound={game.hint.wordLength}
             initialGuesses={game.guesses}      
-            gameMode={game!.gameMode}
+            gameMode={game.gameMode}
+            hint={game.hint}
             players={[ { id: "000", name: "lol", isCurrentTurn: true, score: 20, isCurrentPlayer: true },
                 { id: "0001", name: "lols", isCurrentTurn: false, score: 22, isCurrentPlayer: false }
                 ]}

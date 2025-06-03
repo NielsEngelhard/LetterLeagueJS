@@ -1,15 +1,15 @@
-import { PlayerGuess } from '../game-models';
+import { PlayerGuess, WordHint } from '../game-models';
 import WordRow from './WordRow';
 import Card from '@/components/ui/card/card';
 
 interface GameBoardProps {
-  wordLength: number;
   maxAttempts: number;
   guesses: PlayerGuess[];
+  hint: WordHint;
 }
 
 const GameBoard: React.FC<GameBoardProps> = ({ 
-  wordLength, 
+  hint, 
   maxAttempts,
   guesses,
 }) => {
@@ -25,7 +25,12 @@ const GameBoard: React.FC<GameBoardProps> = ({
 
       {/* // Fill in emty rows */}
       {Array.from({ length: totalEmptyRows }).map((_, index) => (
-        <WordRow key={index} length={wordLength} />
+        <WordRow
+          key={index}
+          length={hint.wordLength}
+          firstLetter={hint.startingLetter}
+          
+        />
       ))}
     </Card>
   );

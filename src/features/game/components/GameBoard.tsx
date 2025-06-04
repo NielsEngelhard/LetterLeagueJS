@@ -1,3 +1,4 @@
+import VirtualKeyboard from '@/components/shared/keyboard/VirtualKeyboard';
 import { PlayerGuess, WordHint } from '../game-models';
 import WordRow from './WordRow';
 import Card from '@/components/ui/card/card';
@@ -18,20 +19,29 @@ const GameBoard: React.FC<GameBoardProps> = ({
 
   return (
     <Card>
+        <div>
+          {guesses.map((playerGuess, i) => (
+            <WordRow key={`playerguess-${i}`} length={2} prefilledWord={playerGuess.guess} />
+          ))}
 
-      {guesses.map((playerGuess, i) => (
-        <WordRow key={`playerguess-${i}`} length={2} prefilledWord={playerGuess.guess} />
-      ))}
+          {/* // Fill in emty rows */}
+          {Array.from({ length: totalEmptyRows }).map((_, index) => (
+            <WordRow
+              key={index}
+              length={hint.wordLength}
+              firstLetter={hint.startingLetter}
+              
+            />
+          ))}             
+        </div>
 
-      {/* // Fill in emty rows */}
-      {Array.from({ length: totalEmptyRows }).map((_, index) => (
-        <WordRow
-          key={index}
-          length={hint.wordLength}
-          firstLetter={hint.startingLetter}
-          
-        />
-      ))}
+        <div>
+          <VirtualKeyboard
+            onBackspace={() => {}}
+            onEnter={() => {}}
+            onKeyPress={(key: string) => {}}
+          />
+        </div>
     </Card>
   );
 };
